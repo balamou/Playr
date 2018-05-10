@@ -33,6 +33,7 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         super.viewDidLoad()
         
         //Add rotation observer
+        rotated()
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         //Setup movieView
@@ -48,9 +49,13 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         self.view.addSubview(self.movieView)
         self.view.sendSubview(toBack: self.movieView)
         
-        
+        // SET ORIENTATION
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.myOrientation = .landscape
+        appDelegate.orientationLock = .landscape
     }
-    
+   
+
     override func viewDidAppear(_ animated: Bool)
     {
         let media = VLCMedia(url: self.url!)
@@ -60,7 +65,6 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         mediaPlayer.drawable = self.movieView
         
         mediaPlayer.addObserver(self, forKeyPath: "time", options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,6 +72,11 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         
         mediaPlayer.removeObserver(self, forKeyPath: "time") // remove observer
         mediaPlayer.stop()
+        
+        // RESET ORIENTATION
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.myOrientation = .portrait
+        appDelegate.orientationLock = .portrait
     }
     
     override func didReceiveMemoryWarning()
@@ -83,6 +92,14 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     //----------------------------------------------------------------------
     @objc func rotated()
     {
+        let value = UIInterfaceOrientation.landscapeRight.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.myOrientation = .landscape
+        appDelegate.orientationLock = .landscape
+        
+        //
         let orientation = UIDevice.current.orientation
         
         if (UIDeviceOrientationIsLandscape(orientation)) {
@@ -93,7 +110,9 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         }
         
         //Always fill entire screen
-        self.movieView.frame = self.view.frame
+        if let movieViewTmp = movieView {
+            movieViewTmp.frame = self.view.frame
+        }
     }
     
     //----------------------------------------------------------------------

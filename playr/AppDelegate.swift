@@ -43,6 +43,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
  
 
+    //----------------------------------------------------------------------
+    // ORIENTATION
+    //----------------------------------------------------------------------
+    var orientationLock = UIInterfaceOrientationMask.portrait
+    var myOrientation: UIInterfaceOrientationMask = .portrait
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return myOrientation
+    }
 
 }
 
