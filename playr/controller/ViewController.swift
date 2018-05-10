@@ -13,14 +13,13 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     //------------------------- Outlets ------------------------------------
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var timeDisplay: UILabel!
+    @IBOutlet weak var pausePlayBtn: UIButton!
     
     //------------------------ Attributes ----------------------------------
     var movieView: UIView!
     var mediaPlayer = VLCMediaPlayer()
     //let url = URL(string: "http://192.168.15.108/movies/war_dogs/war_dogs.mkv")
-    let url = URL(string: "http://192.168.15.108/movies/rick_and_morty/season_1/S1E1.mp4")
-    
-    
+    var url = URL(string: "http://192.168.15.108/movies/rick_and_morty/season_1/S1E1.mp4")
     
     var _setPosition = true
     var updatePosition = true
@@ -33,15 +32,14 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         super.viewDidLoad()
         
         //Add rotation observer
-        rotated()
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         //Setup movieView
         self.movieView = UIView()
-        self.movieView.backgroundColor = UIColor.gray
+        self.movieView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         self.movieView.frame = UIScreen.screens[0].bounds
         
-        //Add tap gesture to movieView for play/pause
+        //Add tap gesture to movieView for show/hide tools
         let gesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.movieViewTapped(_:)))
         self.movieView.addGestureRecognizer(gesture)
         
@@ -49,12 +47,20 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         self.view.addSubview(self.movieView)
         self.view.sendSubview(toBack: self.movieView)
         
-        // SET ORIENTATION
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.myOrientation = .landscape
-        appDelegate.orientationLock = .landscape
+        // CHANGE ORIENTATION
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.landscapeRight, andRotateTo: UIInterfaceOrientation.landscapeRight)
     }
    
+    // STOP ROTATION ANIMATION
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        coordinator.animate(alongsideTransition: nil) { (_) in
+            UIView.setAnimationsEnabled(true)
+        }
+        UIView.setAnimationsEnabled(false)
+        super.viewWillTransition(to: size, with: coordinator)
+    }
+    
 
     override func viewDidAppear(_ animated: Bool)
     {
@@ -65,7 +71,15 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         mediaPlayer.drawable = self.movieView
         
         mediaPlayer.addObserver(self, forKeyPath: "time", options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
+        
+        movieView.frame = self.view.frame // fill in movie view
+        
+        // start playing
+        mediaPlayer.play()
+        pausePlayBtn.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
     }
+    @objc func canRotate() -> Void {}
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -74,10 +88,11 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         mediaPlayer.stop()
         
         // RESET ORIENTATION
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.myOrientation = .portrait
-        appDelegate.orientationLock = .portrait
+        if (self.isMovingFromParentViewController) {
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        }
     }
+    
     
     override func didReceiveMemoryWarning()
     {
@@ -92,14 +107,6 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     //----------------------------------------------------------------------
     @objc func rotated()
     {
-        let value = UIInterfaceOrientation.landscapeRight.rawValue
-        UIDevice.current.setValue(value, forKey: "orientation")
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.myOrientation = .landscape
-        appDelegate.orientationLock = .landscape
-        
-        //
         let orientation = UIDevice.current.orientation
         
         if (UIDeviceOrientationIsLandscape(orientation)) {
@@ -128,23 +135,21 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         // PAUSE
         if mediaPlayer.isPlaying
         {
-            //mediaPlayer.jumpForward(15)
-            
             mediaPlayer.pause()
-            
-            let remaining = mediaPlayer.remainingTime
-            let time = mediaPlayer.time
-            
-            print("Paused at \(time?.description ?? "") with \(remaining?.description ?? "") time remaining")
-            //sender.setTitle("Play", for: .normal)
             sender.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            
+            // console ----
+            let remaining = mediaPlayer.remainingTime.description
+            let time = mediaPlayer.time.description
+            
+            print("Paused at \(time) with \(remaining) time remaining")
         }
         // PLAY
         else {
             mediaPlayer.play()
-            print("Playing")
-            //sender.setTitle("Pause", for: .normal)
             sender.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            
+            print("Playing")
         }
     }
     

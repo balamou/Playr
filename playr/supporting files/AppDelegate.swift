@@ -46,10 +46,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //----------------------------------------------------------------------
     // ORIENTATION
     //----------------------------------------------------------------------
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
+    {
+        if let rootViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController)
+        {
+            if (rootViewController.responds(to: Selector(("canRotate"))))
+            {
+                // Unlock landscape view orientations for this view controller
+                return self.orientationLock;
+            }
+        }
+        
+        // Only allow portrait (standard behaviour)
+        return .portrait;
+    }
     var orientationLock = UIInterfaceOrientationMask.portrait
-    var myOrientation: UIInterfaceOrientationMask = .portrait
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        return myOrientation
+    
+    struct AppUtility {
+        static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
+            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                delegate.orientationLock = orientation
+            }
+        }
+        
+        static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
+            self.lockOrientation(orientation)
+            UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+        }
+    }
+    
+    
+    
+    private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController?
+    {
+        if (rootViewController == nil) { return nil }
+        if (rootViewController.isKind(of: UITabBarController.self)) {
+            return topViewControllerWithRootViewController(rootViewController: (rootViewController as! UITabBarController).selectedViewController)
+        } else if (rootViewController.isKind(of: UINavigationController.self)) {
+            return topViewControllerWithRootViewController(rootViewController: (rootViewController as! UINavigationController).visibleViewController)
+        } else if (rootViewController.presentedViewController != nil) {
+            return topViewControllerWithRootViewController(rootViewController: rootViewController.presentedViewController)
+        }
+        return rootViewController
     }
 
 }
