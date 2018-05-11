@@ -14,6 +14,7 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var timeDisplay: UILabel!
     @IBOutlet weak var pausePlayBtn: UIButton!
+    @IBOutlet weak var tools: UIView!
     
     //------------------------ Attributes ----------------------------------
     var movieView: UIView!
@@ -23,6 +24,8 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     
     var _setPosition = true
     var updatePosition = true
+    
+    var toolBarShown = true
     
     //----------------------------------------------------------------------
     // METHODS
@@ -123,13 +126,25 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     }
     
     //----------------------------------------------------------------------
-    // Pause/Play
+    // Show/Hide tools
     //----------------------------------------------------------------------
     @objc func movieViewTapped(_ sender: UITapGestureRecognizer)
     {
+        if toolBarShown {
+            tools.isHidden = true
+            self.navigationController?.isNavigationBarHidden = true
+        }
+        else {
+             tools.isHidden = false
+            self.navigationController?.isNavigationBarHidden = false
+        }
         
+        toolBarShown = !toolBarShown
     }
     
+    //----------------------------------------------------------------------
+    // Pause/Play
+    //----------------------------------------------------------------------
     @IBAction func pausePlay(_ sender: UIButton)
     {
         // PAUSE

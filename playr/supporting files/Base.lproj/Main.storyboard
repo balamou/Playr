@@ -74,13 +74,18 @@
                                                             <action selector="pausePlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jk8-9H-0zs"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2X8-kx-OHe">
-                                                        <rect key="frame" x="325" y="3.9798740277613263" width="42" height="20.760937216252749"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VHK-fV-1wd">
+                                                        <rect key="frame" x="325" y="3.9798740277613298" width="40.5" height="18.5"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2X8-kx-OHe">
+                                                                <rect key="frame" x="0.0" y="0.0" width="40.5" height="18.5"/>
+                                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJr-2n-Fhc">
                                                         <rect key="frame" x="46" y="2.9060324476103219" width="22" height="23.982461956705762"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -91,6 +96,10 @@
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="2X8-kx-OHe" firstAttribute="centerY" secondItem="8z8-od-CBF" secondAttribute="centerY" id="QHx-a1-Tih"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2X8-kx-OHe" secondAttribute="trailing" constant="9.5" id="o4U-YB-XJU"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -114,6 +123,7 @@
                         <outlet property="pausePlayBtn" destination="JJ0-82-xBD" id="xPx-wQ-fMx"/>
                         <outlet property="slider" destination="zei-K5-xqu" id="3yo-5i-73R"/>
                         <outlet property="timeDisplay" destination="2X8-kx-OHe" id="fWq-Z0-glc"/>
+                        <outlet property="tools" destination="8z8-od-CBF" id="1H4-GK-Mgl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
