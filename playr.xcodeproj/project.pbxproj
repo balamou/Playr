@@ -19,6 +19,8 @@
 		EDAF90F520A4C66F00E17275 /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90F420A4C66F00E17275 /* MovieController.swift */; };
 		EDAF90F920A4EEDB00E17275 /* QueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90F820A4EEDB00E17275 /* QueryService.swift */; };
 		EDAF90FC20A4F8A300E17275 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90FB20A4F8A300E17275 /* TrackCell.swift */; };
+		EDAF90FF20A9038900E17275 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90FE20A9038900E17275 /* model.swift */; };
+		EDAF910220AB5A0700E17275 /* state.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF910120AB5A0700E17275 /* state.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		EDAF90F420A4C66F00E17275 /* MovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
 		EDAF90F820A4EEDB00E17275 /* QueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryService.swift; sourceTree = "<group>"; };
 		EDAF90FB20A4F8A300E17275 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
+		EDAF90FE20A9038900E17275 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
+		EDAF910120AB5A0700E17275 /* state.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = state.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				EDAF90E520A414C200E17275 /* Info.plist */,
-				EDAF90FD20A4F8B900E17275 /* view */,
-				EDAF90F720A4EE0200E17275 /* controller */,
-				EDAF90F620A4EDF000E17275 /* supporting files */,
-				EDAF90FA20A4EEE600E17275 /* networking */,
+				EDAF910020A9039200E17275 /* Model */,
+				EDAF90FD20A4F8B900E17275 /* View */,
+				EDAF90F720A4EE0200E17275 /* Controller */,
+				EDAF90F620A4EDF000E17275 /* Supporting files */,
+				EDAF90FA20A4EEE600E17275 /* Networking */,
 				EDAF90ED20A4153F00E17275 /* playr-Bridging-Header.h */,
 				EDAF90EE20A4153F00E17275 /* header.m */,
 				EDAF90F020A47A9F00E17275 /* tmp.m */,
@@ -105,7 +110,7 @@
 			path = playr;
 			sourceTree = "<group>";
 		};
-		EDAF90F620A4EDF000E17275 /* supporting files */ = {
+		EDAF90F620A4EDF000E17275 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
 				EDAF90DD20A414C200E17275 /* Main.storyboard */,
@@ -113,32 +118,41 @@
 				EDAF90D920A414C200E17275 /* AppDelegate.swift */,
 				EDAF90E020A414C200E17275 /* Assets.xcassets */,
 			);
-			path = "supporting files";
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
-		EDAF90F720A4EE0200E17275 /* controller */ = {
+		EDAF90F720A4EE0200E17275 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				EDAF90F420A4C66F00E17275 /* MovieController.swift */,
 				EDAF90DB20A414C200E17275 /* ViewController.swift */,
 			);
-			path = controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		EDAF90FA20A4EEE600E17275 /* networking */ = {
+		EDAF90FA20A4EEE600E17275 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				EDAF90F820A4EEDB00E17275 /* QueryService.swift */,
 			);
-			path = networking;
+			path = Networking;
 			sourceTree = "<group>";
 		};
-		EDAF90FD20A4F8B900E17275 /* view */ = {
+		EDAF90FD20A4F8B900E17275 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				EDAF90FB20A4F8A300E17275 /* TrackCell.swift */,
 			);
-			path = view;
+			path = View;
+			sourceTree = "<group>";
+		};
+		EDAF910020A9039200E17275 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EDAF90FE20A9038900E17275 /* model.swift */,
+				EDAF910120AB5A0700E17275 /* state.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,8 +255,10 @@
 				EDAF90F520A4C66F00E17275 /* MovieController.swift in Sources */,
 				EDAF90F120A47A9F00E17275 /* tmp.m in Sources */,
 				EDAF90DC20A414C200E17275 /* ViewController.swift in Sources */,
+				EDAF910220AB5A0700E17275 /* state.swift in Sources */,
 				EDAF90F920A4EEDB00E17275 /* QueryService.swift in Sources */,
 				EDAF90DA20A414C200E17275 /* AppDelegate.swift in Sources */,
+				EDAF90FF20A9038900E17275 /* model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
