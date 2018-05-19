@@ -27,7 +27,12 @@ enum FilmType {
 }
 
 
-class Viewed {
+class Viewed: ModelNetwork, CustomStringConvertible {
+    
+    var description: String {
+        return "Viewed: \(id), \(type), \(URL), \(duration), \(stoppedAt), \(self.label())"
+    }
+    
     //----------------------------------------------------------------------
     // MANDATORY ATTRIBUTES
     //----------------------------------------------------------------------
@@ -83,18 +88,81 @@ class Viewed {
         
         return (hours, minutes)
     }
+    
+    
+    //----------------------------------------------------------------------
+    // NERWORK
+    //----------------------------------------------------------------------
+    override init()
+    {
+        // mandatory
+        self.id = 0
+        self.type = .series
+        self.URL = ""
+        self.duration = 0
+        self.stoppedAt = 0
+    }
+    
+    override func json(_ response: JSONDictionary?)
+    {
+        guard let array = response!["viewed"] as? [Any] else
+        {
+            errorMessage += "Dictionary does not contain results key\n"
+            return
+        }
+        
+        var index = 0
+        for returnedDictionary in array
+        {
+            if let dict = returnedDictionary as? JSONDictionary,
+                let sid = dict["Series_id"] as? String, let Series_id = Int(sid),
+                let seas = dict["Season"] as? String, let Season = Int(seas),
+                let ep = dict["Episode"] as? String, let Episode = Int(ep),
+                let Poster = dict["Poster"] as? String,
+                let dur = dict["Duration"] as? String, let Duration = Int(dur),
+                let stp = dict["StoppedAt"] as? String, let StoppedAt = Int(stp),
+                let URL = dict["URL"] as? String
+            {
+                let item = Viewed(Series_id, ofType: .series, State.address + URL, Duration, StoppedAt)
+                item.season = Season
+                item.episode = Episode
+                item.poster = State.address + Poster
+                
+                self.results.append(item)
+                index += 1
+            }
+            else
+            {
+                errorMessage += "Problem parsing dictionary\n"
+            }
+        }
+    }
+    
+    func load(userid: Int, completion: @escaping QueryResult)
+    {
+        self.urlPath = State.address + "requests/get_viewed.php"
+        self.query = "user_id=\(userid)"
+        
+        self.getSearchResults(completion: completion)
+    }
 }
 
 
 
 
-class Movie {
+class Movie: ModelNetwork, CustomStringConvertible {
+    
+    var description: String {
+        return "Movie: \(id), \(type), \(language), \(title), \(desc ?? "nil"), \(poster ?? "nil"), \(URL ?? "nil")"
+    }
+    
     //----------------------------------------------------------------------
     // MANDATORY ATTRIBUTES
     //----------------------------------------------------------------------
     var id: Int
     var type: FilmType
     var language: String = "En" // default is english
+    var title: String
     
     //----------------------------------------------------------------------
     // OPTIONAL ATTRIBUTES
@@ -106,10 +174,59 @@ class Movie {
     //----------------------------------------------------------------------
     // METHODS
     //----------------------------------------------------------------------
-    init(_ id: Int, withType type: FilmType)
+    init(_ id: Int, withType type: FilmType, title: String)
     {
         self.id = id
         self.type = type
+        self.title = title
+    }
+    
+    //----------------------------------------------------------------------
+    // NERWORK
+    //----------------------------------------------------------------------
+    override init()
+    {
+        self.id = 0
+        self.type = .series
+        self.title = "N/A"
+    }
+    
+    override func json(_ response: JSONDictionary?)
+    {
+        guard let array = response!["movies"] as? [Any] else
+        {
+            errorMessage += "Dictionary does not contain results key\n"
+            return
+        }
+        
+        var index = 0
+        for returnedDictionary in array
+        {
+            if let dict = returnedDictionary as? JSONDictionary,
+                let id = dict["ID"] as? String,
+                let Title = dict["Title"] as? String,
+                let Desc = dict["Description"] as? String,
+                let Poster = dict["Poster"] as? String
+             {
+                let item = Movie(Int(id) ?? 0, withType: .series, title: Title)
+                item.desc = Desc
+                item.poster = State.address + Poster
+                self.results.append(item)
+                index += 1
+            }
+            else
+            {
+                errorMessage += "Problem parsing dictionary\n"
+            }
+        }
+    }
+    
+    func load(completion: @escaping QueryResult)
+    {
+        self.urlPath = State.address + "requests/get_movies.php"
+        self.query = "FilmType=series&language=\(State.language)"
+        
+        self.getSearchResults(completion: completion)
     }
 }
 
@@ -193,6 +310,14 @@ class Episode {
         return (hours, minutes)
     }
 }
+
+
+//----------------------------------------------------------------------------
+//
+//                           NETWRORK PARSING
+//                       ~~~~~~~~~~~~~~~~~~~~~~~
+//
+//----------------------------------------------------------------------------
 
 
 
