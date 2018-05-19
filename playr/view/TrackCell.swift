@@ -29,7 +29,7 @@ class MovieCell: UICollectionViewCell {
     @IBOutlet weak var duration: UIView!
     
     var play: (String) -> () = {_ in}
-    var info: (Int) -> () = {_ in}
+    var info: (Int, Int, String?, String) -> () = {_,_,_,_ in}
     var movie: Viewed?
     
     func setup(){
@@ -62,7 +62,7 @@ class MovieCell: UICollectionViewCell {
     @IBAction func openInfo(_ sender: UIButton)
     {
         if let m = movie {
-            self.info(m.id)
+            self.info(m.id, m.season ?? 1, m.poster, m.desc ?? "N/A")
         }
     }
 }
@@ -76,7 +76,7 @@ class MovieListCell: UITableViewCell {
     @IBOutlet weak var poster: UIImageView!
     
     var movieInfo: Movie?
-    var info: (Int) -> () = {_ in}
+    var info: (Int, Int, String?, String) -> () = {_,_,_,_ in}
     
     
     func setup()
@@ -95,12 +95,62 @@ class MovieListCell: UITableViewCell {
     @IBAction func openInfo(_ sender: UIButton)
     {
         if let m = movieInfo {
-            self.info(m.id)
+            self.info(m.id, 1, m.poster, m.desc ?? "N/A")
         }
     }
     
 }
 
+
+class EpisodeCell: UITableViewCell {
+    
+    @IBOutlet weak var thumbnailView: UIImageView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var duration: UILabel!
+    @IBOutlet weak var plot: UILabel!
+    
+    @IBOutlet weak var stoppedAtView: UIView!
+    @IBOutlet weak var durationView: UIView!
+    
+    var episodeData: Episode?
+    var play: (String) -> () = {_ in}
+    
+    func setup()
+    {
+        if let ep = episodeData {
+            if let thumbnail = ep.thumbnail{
+                thumbnailView.getImgFromUrl(link: thumbnail, contentMode: UIViewContentMode.scaleAspectFit)
+            }
+            self.title.text = "\(ep.episodeNum). \(ep.title)"
+            self.duration.text = ep.durationMin()
+            self.plot.text = ep.description ?? "N/A"
+            
+            self.configureTime()
+        }
+    }
+    
+    @IBAction func playEpisode(_ sender: UIButton)
+    {
+        if let ep = episodeData {
+            self.play(ep.URL)
+        }
+    }
+    
+    // Set view width
+    func configureTime()
+    {
+        if let ep = episodeData, let stoppedAt = ep.stoppedAt  {
+            let newWidth = self.durationView.frame.width * CGFloat(Float(stoppedAt)/Float(ep.duration))
+            self.stoppedAtView.frame = CGRect(0, 0, newWidth, self.stoppedAtView.frame.height)
+           
+            self.stoppedAtView.isHidden = false
+        }
+        else{
+            // hide duration time bar
+            self.duration.isHidden = true
+        }
+    }
+}
 
 
 
@@ -114,7 +164,9 @@ extension UIImageView {
             let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
             
             DispatchQueue.main.async {
-                self.image = UIImage(data: data!)
+                if let d = data {
+                self.image = UIImage(data: d)
+                }
             }
         }
     }

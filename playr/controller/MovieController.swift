@@ -89,7 +89,6 @@ extension MovieController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        
         let cell: TrackCell = tableView.dequeueReusableCell(withIdentifier: "track cell", for: indexPath) as! TrackCell
         
         let track = searchResults[indexPath.row]
