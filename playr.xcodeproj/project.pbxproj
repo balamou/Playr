@@ -11,6 +11,7 @@
 		ED19DC5220AE50BC004A4763 /* ModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19DC5120AE50BC004A4763 /* ModelNetwork.swift */; };
 		ED19DC5420AF8461004A4763 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19DC5320AF8461004A4763 /* MainScreen.swift */; };
 		ED19DC5620AFDC26004A4763 /* SeriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19DC5520AFDC26004A4763 /* SeriesController.swift */; };
+		ED894F5B20B085EE00F2DBDE /* NewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED894F5A20B085EE00F2DBDE /* NewModel.swift */; };
 		EDAF90DA20A414C200E17275 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90D920A414C200E17275 /* AppDelegate.swift */; };
 		EDAF90DC20A414C200E17275 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90DB20A414C200E17275 /* ViewController.swift */; };
 		EDAF90DF20A414C200E17275 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAF90DD20A414C200E17275 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		ED19DC5120AE50BC004A4763 /* ModelNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNetwork.swift; sourceTree = "<group>"; };
 		ED19DC5320AF8461004A4763 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		ED19DC5520AFDC26004A4763 /* SeriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesController.swift; sourceTree = "<group>"; };
+		ED894F5A20B085EE00F2DBDE /* NewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewModel.swift; sourceTree = "<group>"; };
 		EDAF90D620A414C200E17275 /* playr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAF90D920A414C200E17275 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDAF90DB20A414C200E17275 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				EDAF90FE20A9038900E17275 /* model.swift */,
+				ED894F5A20B085EE00F2DBDE /* NewModel.swift */,
 				ED19DC5120AE50BC004A4763 /* ModelNetwork.swift */,
 				EDAF910120AB5A0700E17275 /* state.swift */,
 			);
@@ -264,6 +267,7 @@
 				EDAF90EF20A4153F00E17275 /* header.m in Sources */,
 				ED19DC5420AF8461004A4763 /* MainScreen.swift in Sources */,
 				ED19DC5620AFDC26004A4763 /* SeriesController.swift in Sources */,
+				ED894F5B20B085EE00F2DBDE /* NewModel.swift in Sources */,
 				EDAF90F520A4C66F00E17275 /* MovieController.swift in Sources */,
 				EDAF90F120A47A9F00E17275 /* tmp.m in Sources */,
 				EDAF90DC20A414C200E17275 /* ViewController.swift in Sources */,
