@@ -74,6 +74,34 @@ class MovieMenu: UIViewController{
         UIView.setAnimationsEnabled(false)
         super.viewWillTransition(to: size, with: coordinator)
     }
+    
+    
+
+    //    func openVideoPlayer(movieURL: String)
+    //    {
+    //        // OPEN VIDEO PLAYER
+    //        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+    //        secondViewController.url = URL(string: movieURL)
+    //
+    //        self.navigationController?.pushViewController(secondViewController, animated: true)
+    //        // OPEN VIDEO PLAYER
+    //    }
+    //
+    //    // TODO: pass a class instead of all those parameters
+    //    func openSeriesInfo(seriesId: Int, season: Int, posterURL: String?, desc: String){
+    //        // OPEN VIDEO PLAYER
+    //        let seriesController = self.storyboard?.instantiateViewController(withIdentifier: "SeriesController") as! SeriesController
+    //
+    //        seriesController.series_id = seriesId
+    //        seriesController.season = season
+    //        seriesController.posterURL = posterURL
+    //        seriesController.decription = desc
+    //
+    //        self.navigationController?.pushViewController(seriesController, animated: true)
+    //        // OPEN VIDEO PLAYER
+    //    }
+    //}
+    
 }
 
 
