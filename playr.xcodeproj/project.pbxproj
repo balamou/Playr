@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9FA8BE2F0E4F21075192396B /* Pods_playr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CAC4B6EC1D09132A03E930D /* Pods_playr.framework */; };
-		ED19DC5220AE50BC004A4763 /* ModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19DC5120AE50BC004A4763 /* ModelNetwork.swift */; };
 		ED19DC5620AFDC26004A4763 /* SeriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19DC5520AFDC26004A4763 /* SeriesController.swift */; };
 		ED894F5B20B085EE00F2DBDE /* NewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED894F5A20B085EE00F2DBDE /* NewModel.swift */; };
 		ED894F5C20B34B3200F2DBDE /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED894F5D20B34B3200F2DBDE /* Kingfisher.framework */; };
@@ -33,7 +32,6 @@
 		5CAC4B6EC1D09132A03E930D /* Pods_playr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ED6EE678BC88493EBE57317 /* Pods-playr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-playr/Pods-playr.debug.xcconfig"; sourceTree = "<group>"; };
 		9FAB58886E918CFE54032516 /* Pods-playr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playr.release.xcconfig"; path = "Pods/Target Support Files/Pods-playr/Pods-playr.release.xcconfig"; sourceTree = "<group>"; };
-		ED19DC5120AE50BC004A4763 /* ModelNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNetwork.swift; sourceTree = "<group>"; };
 		ED19DC5520AFDC26004A4763 /* SeriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesController.swift; sourceTree = "<group>"; };
 		ED894F5A20B085EE00F2DBDE /* NewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewModel.swift; sourceTree = "<group>"; };
 		ED894F5D20B34B3200F2DBDE /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,7 +166,6 @@
 			children = (
 				EDAF90FE20A9038900E17275 /* model.swift */,
 				ED894F5A20B085EE00F2DBDE /* NewModel.swift */,
-				ED19DC5120AE50BC004A4763 /* ModelNetwork.swift */,
 				EDAF910120AB5A0700E17275 /* state.swift */,
 			);
 			path = Model;
@@ -288,7 +285,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED19DC5220AE50BC004A4763 /* ModelNetwork.swift in Sources */,
 				EDAF90FC20A4F8A300E17275 /* TrackCell.swift in Sources */,
 				EDAF90EF20A4153F00E17275 /* header.m in Sources */,
 				EDA46C7220B353CB00B4868F /* Cells.swift in Sources */,
