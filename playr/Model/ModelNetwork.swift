@@ -85,37 +85,37 @@ public class ModelNetwork
     
     func json(_ response: JSONDictionary?)
     {
-        guard let array = response!["viewed"] as? [Any] else
-        {
-            errorMessage += "Dictionary does not contain results key\n"
-            return
-        }
-
-        var index = 0
-        for returnedDictionary in array
-        {
-            if let dict = returnedDictionary as? JSONDictionary,
-                //let id = dict["ID"] as? String,
-                let Series_id = dict["Series_id"] as? String,
-                let Season = dict["Season"] as? String,
-                let Episode = dict["Episode"] as? String,
-                let Thumbnail = dict["Thumbnail"] as? String,
-                let Duration = dict["Duration"] as? String,
-                let StoppedAt = dict["StoppedAt"] as? String,
-                let URL = dict["URL"] as? String
-            {
-                let item = Viewed(Int(Series_id) ?? 1, ofType: .series, URL, Int(Duration) ?? 0, Int(StoppedAt) ?? 0)
-                item.season = Int(Season)
-                item.episode = Int(Episode)
-                item.poster = Thumbnail
-                results.append(item)
-                index += 1
-            }
-            else
-            {
-                errorMessage += "Problem parsing dictionary\n"
-            }
-        }
+//        guard let array = response!["viewed"] as? [Any] else
+//        {
+//            errorMessage += "Dictionary does not contain results key\n"
+//            return
+//        }
+//
+//        var index = 0
+//        for returnedDictionary in array
+//        {
+//            if let dict = returnedDictionary as? JSONDictionary,
+//                //let id = dict["ID"] as? String,
+//                let Series_id = dict["Series_id"] as? String,
+//                let Season = dict["Season"] as? String,
+//                let Episode = dict["Episode"] as? String,
+//                let Thumbnail = dict["Thumbnail"] as? String,
+//                let Duration = dict["Duration"] as? String,
+//                let StoppedAt = dict["StoppedAt"] as? String,
+//                let URL = dict["URL"] as? String
+//            {
+//                //let item = Viewed(Int(Series_id) ?? 1, ofType: .series, URL, Int(Duration) ?? 0, Int(StoppedAt) ?? 0)
+//                item.season = Int(Season)
+//                item.episode = Int(Episode)
+//                item.poster = Thumbnail
+//                results.append(item)
+//                index += 1
+//            }
+//            else
+//            {
+//                errorMessage += "Problem parsing dictionary\n"
+//            }
+//        }
     }
     
 }

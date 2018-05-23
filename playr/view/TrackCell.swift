@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TrackCell: UITableViewCell {
     
@@ -21,54 +22,7 @@ class TrackCell: UITableViewCell {
 
 
 
-class MovieCell: UICollectionViewCell {
-    
-    @IBOutlet weak var sub: UILabel!
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var stoppedAtView: UIView!
-    @IBOutlet weak var duration: UIView!
-    
-    var play: (String) -> () = {_ in}
-    var info: (Int, Int, String?, String) -> () = {_,_,_,_ in}
-    var movie: Viewed?
-    
-    func setup(){
-        if let m = movie {
-            self.configureTime(duration: m.duration, stoppedAt: m.stoppedAt) // set the red bar below the viewed movie
-            self.sub.text = m.label() // set S#E# or duration
-            
-            if let poster = m.poster {
-                image.getImgFromUrl(link: poster, contentMode: UIViewContentMode.scaleAspectFit) // load poster asynchronously
-            }
-        }
-    }
-    
-    // Set view width
-    func configureTime(duration: Int, stoppedAt: Int)
-    {
-        let newWidth = self.duration.frame.width * CGFloat(Float(stoppedAt)/Float(duration))
-        self.stoppedAtView.frame = CGRect(0, 0, newWidth, self.stoppedAtView.frame.height)
-    }
-    
-    // When clicking on play movie -> execute closure
-    @IBAction func playMovie(_ sender: UIButton)
-    {
-        if let m = movie {
-          self.play(m.URL)
-        }
-    }
-    
-    // When clicking on display info -> execute closure
-    @IBAction func openInfo(_ sender: UIButton)
-    {
-        if let m = movie {
-            self.info(m.id, m.season ?? 1, m.poster, m.desc ?? "N/A")
-        }
-    }
-}
-
-
-
+// DELETE
 class MovieListCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -78,27 +32,7 @@ class MovieListCell: UITableViewCell {
     var movieInfo: Movie?
     var info: (Int, Int, String?, String) -> () = {_,_,_,_ in}
     
-    
-    func setup()
-    {
-        if let m = movieInfo {
-            self.titleLabel.text = m.title
-            self.descLabel.text = m.desc ?? "N/A"
-            
-            if let poster = m.poster {
-                self.poster.getImgFromUrl(link: poster, contentMode: UIViewContentMode.scaleAspectFit)
-            }
-        }
-    }
-    
-    // When clicking on display info -> execute closure
-    @IBAction func openInfo(_ sender: UIButton)
-    {
-        if let m = movieInfo {
-            self.info(m.id, 1, m.poster, m.desc ?? "N/A")
-        }
-    }
-    
+
 }
 
 
@@ -119,11 +53,11 @@ class EpisodeCell: UITableViewCell {
     {
         if let ep = episodeData {
             if let thumbnail = ep.thumbnail{
-                thumbnailView.getImgFromUrl(link: thumbnail, contentMode: UIViewContentMode.scaleAspectFit)
+                thumbnailView.loadCache(link: thumbnail, contentMode: UIViewContentMode.scaleAspectFit)
             }
-            self.title.text = "\(ep.episodeNum). \(ep.title)"
+            self.title.text = "\(ep.episode). \(ep.title ?? "N/A")"
             self.duration.text = ep.durationMin()
-            self.plot.text = ep.description ?? "N/A"
+            self.plot.text = ep.plot
             
             self.configureTime()
         }
@@ -154,8 +88,19 @@ class EpisodeCell: UITableViewCell {
 
 
 
+
+
 // SOURCE: https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
 extension UIImageView {
+    
+    func loadCache(link: String, contentMode mode: UIViewContentMode)
+    {
+        let url = URL(string: link)!
+        self.contentMode = mode
+        self.kf.setImage(with: url)
+    }
+    
+    
     func getImgFromUrl(link: String, contentMode mode: UIViewContentMode) {
         let url = URL(string: link)
         self.contentMode = mode

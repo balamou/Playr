@@ -8,19 +8,22 @@
 
 import Foundation
 
+// SINGLETON
 class State{
-    static var address = "http://192.168.15.108/"
-    static var language = "EN"
-    static var user_id = 1
-    static var user_hash = "1"
     
-    var viewedList: [Viewed]? = nil
-    var movieList: [Movie]? = nil
-     
+    static let shared = State()
     
-    init()
+    var address = "http://192.168.15.108/"
+    var language = "EN"
+    var user_id = 1
+    var user_hash = "1"
+    
+    private init()
     {
+        loadPreferences()
         
+        // get hash from preferences
+        // load user id based on hash
     }
     
     // Load settings user has saved
