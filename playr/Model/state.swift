@@ -8,6 +8,17 @@
 
 import Foundation
 
+class User {
+    var name: String
+    var hash: String    // unique identifier
+    
+    init(withName name: String, _ hash: String)
+    {
+        self.name = name
+        self.hash = hash
+    }
+}
+
 // SINGLETON
 class State{
     
@@ -31,5 +42,42 @@ class State{
     func loadPreferences()
     {
         
+    }
+}
+
+
+
+// SOURCE: https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
+extension UIImageView {
+    
+    func loadCache(link: String, contentMode mode: UIViewContentMode)
+    {
+        let url = URL(string: link)!
+        self.contentMode = mode
+        self.kf.setImage(with: url)
+    }
+    
+    
+    func getImgFromUrl(link: String, contentMode mode: UIViewContentMode) {
+        let url = URL(string: link)
+        self.contentMode = mode
+        
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            
+            DispatchQueue.main.async {
+                if let d = data {
+                    self.image = UIImage(data: d)
+                }
+            }
+        }
+    }
+}
+
+extension CGRect {
+    
+    init(_ x:CGFloat, _ y:CGFloat, _ w:CGFloat, _ h:CGFloat) {
+        
+        self.init(x:x, y:y, width:w, height:h)
     }
 }

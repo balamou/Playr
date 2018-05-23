@@ -24,7 +24,6 @@
 		EDAF90F520A4C66F00E17275 /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90F420A4C66F00E17275 /* MovieController.swift */; };
 		EDAF90F920A4EEDB00E17275 /* QueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90F820A4EEDB00E17275 /* QueryService.swift */; };
 		EDAF90FC20A4F8A300E17275 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90FB20A4F8A300E17275 /* TrackCell.swift */; };
-		EDAF90FF20A9038900E17275 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90FE20A9038900E17275 /* model.swift */; };
 		EDAF910220AB5A0700E17275 /* state.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF910120AB5A0700E17275 /* state.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +50,6 @@
 		EDAF90F420A4C66F00E17275 /* MovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
 		EDAF90F820A4EEDB00E17275 /* QueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryService.swift; sourceTree = "<group>"; };
 		EDAF90FB20A4F8A300E17275 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
-		EDAF90FE20A9038900E17275 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
 		EDAF910120AB5A0700E17275 /* state.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = state.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,7 +162,6 @@
 		EDAF910020A9039200E17275 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EDAF90FE20A9038900E17275 /* model.swift */,
 				ED894F5A20B085EE00F2DBDE /* NewModel.swift */,
 				EDAF910120AB5A0700E17275 /* state.swift */,
 			);
@@ -297,7 +294,6 @@
 				EDAF910220AB5A0700E17275 /* state.swift in Sources */,
 				EDAF90F920A4EEDB00E17275 /* QueryService.swift in Sources */,
 				EDAF90DA20A414C200E17275 /* AppDelegate.swift in Sources */,
-				EDAF90FF20A9038900E17275 /* model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
