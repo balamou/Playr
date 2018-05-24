@@ -87,6 +87,8 @@ class MovieMenu: UIViewController{
         let videoPlayer = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         
         videoPlayer.url = viewed.URL
+        videoPlayer.stoppedAt = viewed.stoppedAt ?? 0
+        videoPlayer.duration = viewed.duration
 
         self.navigationController?.pushViewController(videoPlayer, animated: true)
     }
@@ -102,6 +104,7 @@ class MovieMenu: UIViewController{
         let seriesController = self.storyboard?.instantiateViewController(withIdentifier: "SeriesController") as! SeriesController
         seriesController.series_id = series.series_id
         seriesController.net = net
+        
         self.navigationController?.pushViewController(seriesController, animated: true)
         }
     }
