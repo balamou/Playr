@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+
 
 class TrackCell: UITableViewCell {
     
@@ -22,18 +22,6 @@ class TrackCell: UITableViewCell {
 
 
 
-// DELETE
-class MovieListCell: UITableViewCell {
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descLabel: UILabel!
-    @IBOutlet weak var poster: UIImageView!
-    
-    var movieInfo: Movie?
-    var info: (Int, Int, String?, String) -> () = {_,_,_,_ in}
-    
-
-}
 
 
 class EpisodeCell: UITableViewCell {
@@ -46,35 +34,32 @@ class EpisodeCell: UITableViewCell {
     @IBOutlet weak var stoppedAtView: UIView!
     @IBOutlet weak var durationView: UIView!
     
-    var episodeData: Episode?
+    var episode: Episode!
     var play: (String) -> () = {_ in}
     
     func setup()
     {
-        if let ep = episodeData {
-            if let thumbnail = ep.thumbnail{
-                thumbnailView.loadCache(link: thumbnail, contentMode: UIViewContentMode.scaleAspectFit)
-            }
-            self.title.text = "\(ep.episode). \(ep.title ?? "N/A")"
-            self.duration.text = ep.durationMin()
-            self.plot.text = ep.plot
-            
-            self.configureTime()
+        if let thumbnail = episode.thumbnail{
+            thumbnailView.loadCache(link: thumbnail, contentMode: UIViewContentMode.scaleAspectFit)
         }
+        
+        self.title.text = "\(episode.episode). \(episode.title ?? "N/A")"
+        self.duration.text = episode.durationMin()
+        self.plot.text = episode.plot
+        
+        self.configureTime()
     }
     
     @IBAction func playEpisode(_ sender: UIButton)
     {
-        if let ep = episodeData {
-            self.play(ep.URL)
-        }
+        self.play(episode.URL)
     }
     
     // Set view width
     func configureTime()
     {
-        if let ep = episodeData, let stoppedAt = ep.stoppedAt  {
-            let newWidth = self.durationView.frame.width * CGFloat(Float(stoppedAt)/Float(ep.duration))
+        if let stoppedAt = episode.stoppedAt  {
+            let newWidth = self.durationView.frame.width * CGFloat(Float(stoppedAt)/Float(episode.duration))
             self.stoppedAtView.frame = CGRect(0, 0, newWidth, self.stoppedAtView.frame.height)
            
             self.stoppedAtView.isHidden = false

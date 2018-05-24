@@ -29,6 +29,7 @@ class Viewed: CustomStringConvertible
     var poster: String?
     var title: String?
     
+
     // METHODS
     init(id: Int, URL: String, duration: Int)
     {
@@ -42,12 +43,6 @@ class Viewed: CustomStringConvertible
         print("Label not set\n")
         return "N/A"
     }
-    
-    func displayInfo() // displays all the info about series/movie
-    {
-        print("Display info not set\n")
-    }
-    
     
     func durationMin() -> String
     {
@@ -103,20 +98,11 @@ class Movie: Viewed
         self.title = title
     }
     
-    
     // METHODS
     override func label() -> String
     {
         return durationMin()
     }
-    
-
-    // displays all the info about series/movie
-    override func displayInfo()
-    {
-        
-    }
-    
 }
 
 //----------------------------------------------------------------------
@@ -125,7 +111,6 @@ class Movie: Viewed
 class Series {
     var series_id: Int
     var numSeasons: Int
-    var displaySeason: Int = 1
     var episodes: [Int: [Episode]] = [:]
     
     
@@ -251,202 +236,7 @@ class Episode: Viewed
     {
         return "S\(season):E\(episode)" // ex: S1:E2
     }
-    
-    // displays all the info about series/movie
-    override func displayInfo()
-    {
-        
-    }
 }
 
 
 
-//----------------------------------------------------------------------------
-//
-//                           NETWRORK MODEL
-//                       ~~~~~~~~~~~~~~~~~~~~~~~
-//
-//----------------------------------------------------------------------------
-class NetworkModel
-{
-    var viewed: [Viewed] = []       // ??
-    var movies: [Movie] = []         // 10 at a time
-    var series: [Series] = []       // 10 at a time
-    var seriesOpened: [Series] = [] // check this array before loading a series
-    
-    // METHODS
-    func loadViewed(completion: @escaping (String) -> ())
-    {
-        let url = State.shared.address + "requests/get_viewed.php"
-        let query = "user_id=\(State.shared.user_id)"
-        let rNet = RawNet()
-        rNet.getSearchResults(urlPath: url, query: query, jsonParser: jsonView, completion: completion)
-    }
-    
-    func loadMovies(completion: @escaping (String) -> ())
-    {
-        let url = State.shared.address + "requests/get_movies.php"
-        let query = "type=movies&lan=\(State.shared.language)"
-        let rNet = RawNet()
-        rNet.getSearchResults(urlPath: url, query: query, jsonParser: jsonMovies, completion: completion)
-    }
-    
-    func loadSeries(completion: @escaping (String) -> ()) // uses seriesOpened
-    {
-        let url = State.shared.address + "requests/get_movies.php"
-        let query = "type=series&lan=\(State.shared.language)"
-        let rNet = RawNet()
-        rNet.getSearchResults(urlPath: url, query: query, jsonParser: jsonSeries, completion: completion)
-    }
-    
-    // PARSER
-    func jsonView(_ response: JSONDictionary?)
-    {
-        guard let array = response!["viewed"] as? [Any] else
-        {
-            print("Dictionary does not contain 'viewed' key\n")
-            return
-        }
-
-        for viewed in array
-        {
-            if let dict = viewed as? [String: Any],
-                let type = dict["type"] as? String
-            {
-                var item: Viewed?
-                
-                if type == "Movie" {
-                    item = Movie(json: dict)
-                }
-                else if type == "Series" {
-                    item = Episode(json: dict)
-                }
-
-                self.viewed.append(item!)
-           
-            }
-            else
-            {
-                print("Problem parsing dictionary\n")
-            }
-        }
-    }
-    
-    
-    //
-    // JSON MOVIES
-    //
-    func jsonMovies(_ response: JSONDictionary?)
-    {
-        guard let array = response!["movies"] as? [Any] else
-        {
-            print("Dictionary does not contain 'movies' key\n")
-            return
-        }
-        
-        for returnedDictionary in array
-        {
-            guard let dict = returnedDictionary as? JSONDictionary,
-                let item = Movie(json: dict)
-                else
-            {
-                print("Problem parsing movies dictionary\n")
-                break
-            }
-            
-            movies.append(item)
-        }
-    }
-    
-    //
-    // JSON SERIES
-    //
-    func jsonSeries(_ response: JSONDictionary?)
-    {
-        guard let array = response!["series"] as? [Any] else
-        {
-            print("Dictionary does not contain 'series' key\n")
-            return
-        }
-     
-        for returnedDictionary in array
-        {
-            guard let dict = returnedDictionary as? JSONDictionary,
-                  let item = Series(json: dict)
-            else
-            {
-                print("Problem parsing series dictionary\n")
-                break
-            }
-            
-            series.append(item)
-        }
-    }
-
-    
-}
-
-
-
-
-
-
-
-
-public class RawNet
-{
-    var errorMessage = ""
-    let defaultSession = URLSession(configuration: .default)
-    var dataTask: URLSessionDataTask?
-    
-    
-    func getSearchResults(urlPath: String, query: String, jsonParser: @escaping (JSONDictionary?) -> (), completion: @escaping (String) -> () ) {
-        // 1
-        dataTask?.cancel()
-        // 2
-        if var urlComponents = URLComponents(string: urlPath) {
-            urlComponents.query = query
-            // 3
-            guard let url = urlComponents.url else { return }
-            // 4
-            dataTask = defaultSession.dataTask(with: url) { data, response, error in
-                defer { self.dataTask = nil }
-                // 5
-                if let error = error
-                {
-                    self.errorMessage += "DataTask error: " + error.localizedDescription + "\n"
-                }
-                else if let data = data,
-                    let response = response as? HTTPURLResponse,
-                    response.statusCode == 200
-                {
-                    self.parser(jsonParser, data) // FETCH DATA
-                    // 6
-                    DispatchQueue.main.async {
-                        completion(self.errorMessage)
-                    }
-                }
-            }
-            // 7
-            dataTask?.resume()
-        }
-    }
-    
-    
-    
-    fileprivate func parser(_ jsonParser: (JSONDictionary?) -> (),_ data: Data)
-    {
-        var response: JSONDictionary?
-        
-        do {
-            response = try JSONSerialization.jsonObject(with: data, options: []) as? JSONDictionary
-        } catch let parseError as NSError {
-            errorMessage += "JSONSerialization error: \(parseError.localizedDescription)\n"
-            return
-        }
-        
-        // PARSE JSON
-        jsonParser(response)
-    }
-    
-}

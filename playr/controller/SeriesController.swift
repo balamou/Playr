@@ -10,23 +10,16 @@ import Foundation
 
 
 class SeriesController: UIViewController {
-    
-    var series_id : Int?
-    var season : Int = 1
-    var episodes : [Episode] = []
-    var posterURL : String?
-    var decription : String = "N/A"
-    
-    var showGatherer: Show?
-    
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var seasonsLabel: UILabel!
     @IBOutlet weak var currSeason: UIButton!
+    
+    var show: Series!
+    var selectedSeason = 1
     //----------------------------------------------------------------------
-    // METHODS
+    // MARK: METHODS
     //----------------------------------------------------------------------
     override func viewDidLoad()
     {
@@ -37,13 +30,12 @@ class SeriesController: UIViewController {
     {
         super.viewWillAppear(animated)
         
-        loadSeries()
+        descLabel.text = show.desc
         
-        if let url = posterURL {
-            poster.getImgFromUrl(link: url, contentMode: .scaleAspectFit)
+        if let url = show.poster
+        {
+            poster.loadCache(link: url, contentMode: .scaleAspectFit)
         }
-        
-        descLabel.text = decription
     }
     
     // STOP ROTATION ANIMATION
@@ -56,35 +48,9 @@ class SeriesController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
     }
     
+   
     //----------------------------------------------------------------------
-    // FETCHING DATA
-    //----------------------------------------------------------------------
-    func loadSeries()
-    {
-        if let id = series_id {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        showGatherer = Show(id, onSeason: self.season)
-        
-        showGatherer!.load
-        {
-            results, errorMessage in
-            
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            if let openResults = results as? [Episode] {
-                self.episodes = openResults
-                self.tableView.reloadData()
-            }
-            if !errorMessage.isEmpty { print("Search error loading viewed: " + errorMessage) }
-        }
-        }
-        else
-        {
-            print("Series ID was not set!")
-        }
-    }
-    //----------------------------------------------------------------------
-    // IBACTION
+    // MARK: IBACTION
     //----------------------------------------------------------------------
     @IBAction func exit(_ sender: UIButton) {
         //Close Controller
@@ -104,15 +70,21 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return episodes.count
+        if let episodes = show.episodes[selectedSeason] {
+            return episodes.count
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath)
         
-        if let episodeCell = cell as? EpisodeCell {
-            episodeCell.episodeData = self.episodes[indexPath.row]
+        if let episodeCell = cell as? EpisodeCell,
+            let episode = show.episodes[selectedSeason]?[indexPath.row]
+        {
+            episodeCell.episode = episode
             episodeCell.setup()
             episodeCell.play = self.openVideoPlayer
         }

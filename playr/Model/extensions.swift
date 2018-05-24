@@ -8,10 +8,11 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
-// SOURCE: https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
 extension UIImageView {
-    
+
+    // Source: https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
     func loadCache(link: String, contentMode mode: UIViewContentMode)
     {
         let url = URL(string: link)!
@@ -20,6 +21,7 @@ extension UIImageView {
     }
     
     
+    // Non cashing loading of images
     func getImgFromUrl(link: String, contentMode mode: UIViewContentMode) {
         let url = URL(string: link)
         self.contentMode = mode

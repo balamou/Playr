@@ -13,7 +13,7 @@ class MovieController: UIViewController
 {
     var currentPath: String = "movies"
     var searchResults: [String] = []
-    let queryService = QueryService()
+    //let queryService = QueryService()
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -38,19 +38,19 @@ class MovieController: UIViewController
     
     func filesInPath()
     {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        queryService.getSearchResults(searchTerm: currentPath)
-        {
-            results, errorMessage in
-            
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            if let results = results {
-                self.searchResults = results
-                self.tableView.reloadData()
-                self.tableView.setContentOffset(CGPoint.zero, animated: false)
-            }
-            if !errorMessage.isEmpty { print("Search error: " + errorMessage) }
-        }
+//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//        queryService.getSearchResults(searchTerm: currentPath)
+//        {
+//            results, errorMessage in
+//
+//            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//            if let results = results {
+//                self.searchResults = results
+//                self.tableView.reloadData()
+//                self.tableView.setContentOffset(CGPoint.zero, animated: false)
+//            }
+//            if !errorMessage.isEmpty { print("Search error: " + errorMessage) }
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool)

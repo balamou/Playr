@@ -36,11 +36,15 @@ class MovieMenu: UIViewController{
         self.categoryTable.tableHeaderView = UIView(frame: CGRect(0, 0, self.categoryTable.bounds.size.width, dummyViewHeight))
         self.categoryTable.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
         
+        net.displayInfo = self.openSeriesInfo
+        net.play = self.openVideoPlayer
+        
         net.loadViewed(completion: self.reloadView)
         net.loadMovies(completion: self.reloadMovies)
         net.loadSeries(completion: self.reloadSeries)
     }
     
+    // MARK: On completion
     func reloadView(err: String)
     {
         let viewedRow = categoryTable.cellForRow(at: IndexPath(row:0, section: viewRow)) as! ViewedRow
@@ -75,33 +79,29 @@ class MovieMenu: UIViewController{
         super.viewWillTransition(to: size, with: coordinator)
     }
     
-    
 
-    //    func openVideoPlayer(movieURL: String)
-    //    {
-    //        // OPEN VIDEO PLAYER
-    //        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-    //        secondViewController.url = URL(string: movieURL)
-    //
-    //        self.navigationController?.pushViewController(secondViewController, animated: true)
-    //        // OPEN VIDEO PLAYER
-    //    }
-    //
-    //    // TODO: pass a class instead of all those parameters
-    //    func openSeriesInfo(seriesId: Int, season: Int, posterURL: String?, desc: String){
-    //        // OPEN VIDEO PLAYER
-    //        let seriesController = self.storyboard?.instantiateViewController(withIdentifier: "SeriesController") as! SeriesController
-    //
-    //        seriesController.series_id = seriesId
-    //        seriesController.season = season
-    //        seriesController.posterURL = posterURL
-    //        seriesController.decription = desc
-    //
-    //        self.navigationController?.pushViewController(seriesController, animated: true)
-    //        // OPEN VIDEO PLAYER
-    //    }
-    //}
-    
+    // MARK: OPEN VIDEO PLAYER
+    func openVideoPlayer(_ viewed: Viewed)
+    {
+        let videoPlayer = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+       
+
+        self.navigationController?.pushViewController(videoPlayer, animated: true)
+    }
+
+    // MARK: DISPLAY SERIES INFO
+    func openSeriesInfo(_ viewed: Viewed){
+        
+        if let series = viewed as? Episode {
+            
+        
+        let seriesController = self.storyboard?.instantiateViewController(withIdentifier: "SeriesController") as! SeriesController
+        //seriesController.show = a
+        self.navigationController?.pushViewController(seriesController, animated: true)
+        }
+    }
+
+
 }
 
 
