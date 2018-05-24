@@ -16,26 +16,43 @@ class SeriesController: UIViewController {
     @IBOutlet weak var seasonsLabel: UILabel!
     @IBOutlet weak var currSeason: UIButton!
     
-    var show: Series!
+    var show: Series?
+    var series_id: Int!
+    var net: NetworkModel!
     var selectedSeason = 1
+    
     //----------------------------------------------------------------------
     // MARK: METHODS
     //----------------------------------------------------------------------
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        
+        net.loadFullSeries(series_id: series_id, completion: setupData)
+    }
+    
+    func setupData(_ series: Series)
+    {
+        self.show = series
+        
+        descLabel.text = series.desc
+        
+        if let url = series.poster
+        {
+            poster.loadCache(link: url, contentMode: .scaleAspectFit)
+        }
+        
+//        let newHeight = CGFloat(161 * series.episodes[selectedSeason]!.count)
+//        tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, newHeight)
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
-        descLabel.text = show.desc
-        
-        if let url = show.poster
-        {
-            poster.loadCache(link: url, contentMode: .scaleAspectFit)
-        }
+
     }
     
     // STOP ROTATION ANIMATION
@@ -70,7 +87,9 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if let episodes = show.episodes[selectedSeason] {
+        if let show = show,
+            let episodes = show.episodes[selectedSeason]
+        {
             return episodes.count
         }
         
@@ -81,10 +100,12 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath)
         
+        
         if let episodeCell = cell as? EpisodeCell,
-            let episode = show.episodes[selectedSeason]?[indexPath.row]
+            let show = show,
+            let seasons = show.episodes[selectedSeason]
         {
-            episodeCell.episode = episode
+            episodeCell.episode = seasons[indexPath.row]
             episodeCell.setup()
             episodeCell.play = self.openVideoPlayer
         }

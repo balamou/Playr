@@ -42,6 +42,7 @@ class MovieMenu: UIViewController{
         net.loadViewed(completion: self.reloadView)
         net.loadMovies(completion: self.reloadMovies)
         net.loadSeries(completion: self.reloadSeries)
+        
     }
     
     // MARK: On completion
@@ -92,11 +93,14 @@ class MovieMenu: UIViewController{
     // MARK: DISPLAY SERIES INFO
     func openSeriesInfo(_ viewed: Viewed){
         
-        if let series = viewed as? Episode {
+        if let ep = viewed as? Episode,
+           let series = ep.mainSeries
+        {
             
         
         let seriesController = self.storyboard?.instantiateViewController(withIdentifier: "SeriesController") as! SeriesController
-        //seriesController.show = a
+        seriesController.series_id = series.series_id
+        seriesController.net = net
         self.navigationController?.pushViewController(seriesController, animated: true)
         }
     }

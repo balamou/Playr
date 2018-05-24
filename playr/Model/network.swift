@@ -157,13 +157,56 @@ class NetworkModel
         let url = State.shared.address + "requests/get_series.php"
         let query = "user_id=\(State.shared.user_id)&series_id=\(series_id)"
         let rNet = RawNet()
-//        rNet.quickQuery(url, query, jsonFullSeries) {
-//            data in
-//
-//            if let series = data as? Series {
-//                completion(series)
-//            }
-//        }
+        rNet.quickQuery(url, query, jsonFullSeries) {
+            data in
+
+            if let series = data as? Series {
+                completion(series)
+            }
+        }
+    }
+    
+    func jsonFullSeries(_ response: JSONDictionary?) -> Series?
+    {
+        guard let seriesDict = response!["series"] as? [String: Any],
+              let s = Series(json: seriesDict)
+        else
+        {
+            print("Dictionary does not contain 'series' key\n")
+            return nil
+        }
+
+        // EPISODES
+        guard let episodes = response!["episodes"] as? [Any] else
+        {
+            print("Dictionary does not contain 'episodes' key\n")
+            return s
+        }
+        
+        var i = 0
+        for episodeDict in episodes
+        {
+            if let dict = episodeDict as? JSONDictionary,
+                let item = Episode(json: dict)
+            {
+                
+                if s.episodes[item.season] != nil {
+                    s.episodes[item.season]?.append(item)
+                }
+                else {
+                    s.episodes[item.season] = [item]
+                }
+                
+                
+            }
+            else {
+                print(" \(i). Problem parsing episodes dictionary\n")
+                i+=1
+            }
+
+        }
+        
+        return s
     }
     
 }
@@ -234,7 +277,10 @@ public class RawNet
                 tmp = jsonParser(json!)
             }
             
-            completion(tmp)
+           
+            DispatchQueue.main.async {
+                 completion(tmp)
+            }
         }).resume()
     }
     

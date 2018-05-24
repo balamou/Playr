@@ -13,13 +13,29 @@ typealias JSONDictionary = [String: Any]
 //----------------------------------------------------------------------
 // VIEWED
 //----------------------------------------------------------------------
-class Viewed: CustomStringConvertible
+protocol Viewed
 {
-    var description: String {
-        return "{\(URL), \(duration), \(stoppedAt ?? 0), \(poster ?? "N/A")}"
-    }
-    
     // visible
+    var id: Int {get set}
+    var URL: String {get set}
+    var duration: Int {get set}
+    
+    // optional
+    var stoppedAt: Int? {get set}
+    var poster: String? {get set}
+    var title: String? {get set}
+    
+
+    func label() -> String
+    func durationMin() -> String
+}
+
+
+//----------------------------------------------------------------------
+// MOVIE
+//----------------------------------------------------------------------
+class Movie: Viewed
+{
     var id: Int
     var URL: String
     var duration: Int
@@ -28,26 +44,42 @@ class Viewed: CustomStringConvertible
     var stoppedAt: Int?
     var poster: String?
     var title: String?
+    var desc: String?
     
-
-    // METHODS
-    init(id: Int, URL: String, duration: Int)
+    init?(json: [String: Any])
     {
+        // Unwrap JSON
+        guard let id = json["id"] as? Int,
+                let URL = json["URL"] as? String,
+                let duration = json["duration"] as? Int
+        else {
+                print("Error occured parsing JSON for Movie.\n")
+                return nil
+        }
+        // Unwrap JSON
+        
+        self.id = id
         self.URL = URL
         self.duration = duration
-        self.id = id
+        
+        // OPTIONAL
+        self.stoppedAt = json["stopped_at"] as? Int
+        self.poster = json["poster"] as? String
+        self.desc = json["description"] as? String
+        self.title = json["title"] as? String
     }
-
+    
+    // METHODS
     func label() -> String
     {
-        print("Label not set\n")
-        return "N/A"
+        return durationMin()
     }
+    
     
     func durationMin() -> String
     {
         let info = sec2hours(duration)
-
+        
         if info.hour == 0 {
             return "\(info.minutes) min" // show only minutes
         } else {
@@ -65,50 +97,11 @@ class Viewed: CustomStringConvertible
     }
 }
 
-
-//----------------------------------------------------------------------
-// MOVIE
-//----------------------------------------------------------------------
-class Movie: Viewed
-{
-    var desc: String?
-    
-    init?(json: [String: Any])
-    {
-        // Unwrap JSON
-        guard let id = json["id"] as? Int,
-                let URL = json["URL"] as? String,
-                let duration = json["duration"] as? Int,
-            
-                let stopped_at = json["stopped_at"] as? Int?,
-                let poster = json["poster"] as? String?,
-                let title = json["title"] as? String?,
-                let desc = json["description"] as? String?
-        else {
-                print("Error occured parsing JSON for Movie.\n")
-                return nil
-        }
-        // Unwrap JSON
-        
-        super.init(id: id, URL: URL, duration: duration)
-        
-        self.stoppedAt = stopped_at
-        self.poster = poster
-        self.desc = desc
-        self.title = title
-    }
-    
-    // METHODS
-    override func label() -> String
-    {
-        return durationMin()
-    }
-}
-
 //----------------------------------------------------------------------
 // SERIES
 //----------------------------------------------------------------------
-class Series {
+class Series
+{
     var series_id: Int
     var numSeasons: Int
     var episodes: [Int: [Episode]] = [:]
@@ -127,12 +120,7 @@ class Series {
     
     init?(json: [String: Any])
     {
-        guard let series_id = json["ID"] as? Int,
-            
-            let title = json["title"] as? String?,
-            let desc = json["description"] as? String?,
-            let poster = json["poster"] as? String?
-        else
+        guard let series_id = json["ID"] as? Int else
         {
             print("Error parsing json for series\n")
             return nil
@@ -141,27 +129,13 @@ class Series {
         self.series_id = series_id
         self.numSeasons = 0
         
-        self.title = title
-        self.desc = desc
+        // optional
+        self.title = json["title"] as? String
+        self.desc = json["description"] as? String
         
-        if let poster = poster {
+        if let poster = json["poster"] as? String {
             self.poster = State.shared.address + poster
         }
-    }
-    
-    func loadAllEpisodes()
-    {
-        // TODO: SEND REQUEST TO SERVER
-    }
-    
-    func loadSeason(season: Int)
-    {
-        guard season<numSeasons else
-        {
-            return
-        }
-        
-        // TODO: SEND REQUEST TO SERVER
     }
 }
 
@@ -170,15 +144,25 @@ class Series {
 //----------------------------------------------------------------------
 class Episode: Viewed
 {
+    // VIEWED
+    var id: Int
+    var URL: String
+    var duration: Int
+    
+    var stoppedAt: Int?
+    var poster: String?
+    var title: String?
+    
+    // SERIES
     var season: Int
     var episode: Int
-    var series_id: Int
-    
-    // optional
     var plot: String?
     var thumbnail: String?
+    
+    var series_id: Int
     var mainSeries: Series?
 
+    
     
     // METHODS
     init(_ id: Int, _ URL: String, _ duration: Int, _ season: Int, _ episode: Int, _ series_id: Int)
@@ -187,38 +171,37 @@ class Episode: Viewed
         self.episode = episode
         self.series_id = series_id
         
-        super.init(id: id, URL: URL, duration: duration)
+        self.id = id
+        self.URL = URL
+        self.duration = duration
     }
     
     
     convenience init?(json: [String: Any])
     {
-        // Unwrap JSON  -------------------------------------
+        // UNWRAP JSON
         guard let id = json["id"] as? Int,
             let URL = json["URL"] as? String,
             let duration = json["duration"] as? Int,
 
             let season = json["season"] as? Int,
             let episode = json["episode"] as? Int,
-            let series_id = json["series_id"] as? Int,
-            
-            // OPTIONALS
-            let plot = json["plot"] as? String?,
-            let thumbnail = json["thumbnail"] as? String?,
-            let stopped_at = json["stopped_at"] as? Int?,
-            let title = json["title"] as? String?
-            else {
-                print("Error occured parsing JSON for Movie\n")
+            let series_id = json["series_id"] as? Int
+            else
+        {
+                print("Ex1: Error occured parsing JSON for Movie\n")
                 return nil
         }
-        // Unwrap JSON  --------------------------------------
-        
         self.init(id, URL, duration, season, episode, series_id)
         
-        self.stoppedAt = stopped_at
-        self.title = title
-        self.plot = plot
-        self.thumbnail = thumbnail
+        
+        // OPTIONAL
+        self.stoppedAt = json["stopped_at"] as? Int
+        self.title =  json["title"] as? String
+        self.plot = json["plot"] as? String
+        if let t = json["thumbnail"] as? String {
+            self.thumbnail = State.shared.address + t
+        }
         
         
         // GET SERIES: OPTIONAL PART -> WILL NOT FAIL INITIALIZATION
@@ -232,9 +215,29 @@ class Episode: Viewed
         self.mainSeries = s
     }
     
-    override func label() -> String
+    func label() -> String
     {
         return "S\(season):E\(episode)" // ex: S1:E2
+    }
+    
+    func durationMin() -> String
+    {
+        let info = sec2hours(duration)
+        
+        if info.hour == 0 {
+            return "\(info.minutes) min" // show only minutes
+        } else {
+            return "\(info.hour) h \(info.minutes) min"
+        }
+    }
+    
+    // Converts seconds to hours & minutes
+    internal func sec2hours(_ seconds: Int) -> (hour: Int, minutes: Int)
+    {
+        let hours: Int = seconds / 3600
+        let minutes: Int = (seconds % 3600) / 60
+        
+        return (hours, minutes)
     }
 }
 
