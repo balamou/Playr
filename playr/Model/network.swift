@@ -24,7 +24,7 @@ class NetworkModel
     
     
     var play: (Viewed) -> () = {_ in}
-    var displayInfo: (Viewed) -> () = {_ in}
+    var displayInfo: (Any) -> () = {_ in}
     
     // ------------------------------------------------------------------------------
     // MARK: METHODS

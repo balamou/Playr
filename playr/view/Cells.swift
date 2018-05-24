@@ -82,11 +82,15 @@ class CategoryRow: UITableViewCell, UICollectionViewDataSource, UICollectionView
         case "Movie":
             if let URL = net.movies[indexPath.row].poster {
                 cell.moviePoster.loadCache(link: URL, contentMode: .scaleAspectFill)
+                cell.film = net.movies[indexPath.row]
+                cell.openInfoView = net.displayInfo
             }
             break
         case "Series":
             if let URL = net.series[indexPath.row].poster {
                 cell.moviePoster.loadCache(link: URL, contentMode: .scaleAspectFill)
+                cell.film = net.series[indexPath.row]
+                cell.openInfoView = net.displayInfo
             }
             break
         default:
@@ -167,6 +171,12 @@ class ViewedCell: UICollectionViewCell {
 
 class MovieCell: UICollectionViewCell {
     @IBOutlet weak var moviePoster: UIImageView!
+    var openInfoView: (Any) -> () = {_ in }
+    var film: Any!
+    
+    @IBAction func openInfo(_ sender: UIButton) {
+        self.openInfoView(film)
+    }
 }
 
 

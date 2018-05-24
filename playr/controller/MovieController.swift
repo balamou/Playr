@@ -116,7 +116,7 @@ extension MovieController: UITableViewDataSource, UITableViewDelegate
         if pathExtention=="mkv" || pathExtention=="avi" || pathExtention=="mp4"
         {
             let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            secondViewController.url = URL(string: "http://192.168.15.108/" + nextPath)
+            secondViewController.url = "http://192.168.15.108/" + nextPath
             
             self.navigationController?.pushViewController(secondViewController, animated: true)
         }

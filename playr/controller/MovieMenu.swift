@@ -85,13 +85,14 @@ class MovieMenu: UIViewController{
     func openVideoPlayer(_ viewed: Viewed)
     {
         let videoPlayer = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-       
+        
+        videoPlayer.url = viewed.URL
 
         self.navigationController?.pushViewController(videoPlayer, animated: true)
     }
 
     // MARK: DISPLAY SERIES INFO
-    func openSeriesInfo(_ viewed: Viewed){
+    func openSeriesInfo(_ viewed: Any){
         
         if let ep = viewed as? Episode,
            let series = ep.mainSeries

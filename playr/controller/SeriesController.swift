@@ -117,7 +117,7 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
     {
         // OPEN VIDEO PLAYER
         let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        secondViewController.url = URL(string: movieURL)
+        secondViewController.url = movieURL
         
         self.navigationController?.pushViewController(secondViewController, animated: true)
         // OPEN VIDEO PLAYER
