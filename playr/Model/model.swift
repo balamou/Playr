@@ -59,7 +59,7 @@ class Movie: Viewed
         // Unwrap JSON
         
         self.id = id
-        self.URL = URL
+        self.URL = State.shared.address + URL
         self.duration = duration
         
         // OPTIONAL
@@ -105,7 +105,7 @@ class Series
     var series_id: Int
     var numSeasons: Int
     var episodes: [Int: [Episode]] = [:]
-    
+    var openSeason = 1
     
     var title: String?
     var desc: String?
@@ -120,16 +120,20 @@ class Series
     
     init?(json: [String: Any])
     {
-        guard let series_id = json["ID"] as? Int else
+        guard let series_id = json["id"] as? Int,
+              let num_seasons = json["num_seasons"] as? Int
+        else
         {
             print("Error parsing json for series\n")
             return nil
         }
         
         self.series_id = series_id
-        self.numSeasons = 0
+        self.numSeasons = num_seasons
+        
         
         // optional
+        self.openSeason = json["open_season"] as? Int ?? 1
         self.title = json["title"] as? String
         self.desc = json["description"] as? String
         
@@ -192,7 +196,7 @@ class Episode: Viewed
                 print("Ex1: Error occured parsing JSON for Movie\n")
                 return nil
         }
-        self.init(id, URL, duration, season, episode, series_id)
+        self.init(id, State.shared.address + URL, duration, season, episode, series_id)
         
         
         // OPTIONAL

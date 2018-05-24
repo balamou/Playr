@@ -19,7 +19,6 @@ class SeriesController: UIViewController {
     var show: Series?
     var series_id: Int!
     var net: NetworkModel!
-    var selectedSeason = 1
     
     //----------------------------------------------------------------------
     // MARK: METHODS
@@ -45,6 +44,7 @@ class SeriesController: UIViewController {
         
 //        let newHeight = CGFloat(161 * series.episodes[selectedSeason]!.count)
 //        tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, newHeight)
+        seasonsLabel.text = "\(series.numSeasons) seasons"
         tableView.reloadData()
     }
     
@@ -88,7 +88,7 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if let show = show,
-            let episodes = show.episodes[selectedSeason]
+            let episodes = show.episodes[show.openSeason]
         {
             return episodes.count
         }
@@ -103,7 +103,7 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
         
         if let episodeCell = cell as? EpisodeCell,
             let show = show,
-            let seasons = show.episodes[selectedSeason]
+            let seasons = show.episodes[show.openSeason]
         {
             episodeCell.episode = seasons[indexPath.row]
             episodeCell.setup()
