@@ -62,11 +62,13 @@ class EpisodeCell: UITableViewCell {
             let newWidth = self.durationView.frame.width * CGFloat(Float(stoppedAt)/Float(episode.duration))
             self.stoppedAtView.frame = CGRect(0, 0, newWidth, self.stoppedAtView.frame.height)
            
-            self.stoppedAtView.isHidden = false
+            self.durationView.isHidden = false
+            //self.stoppedAtView.setNeedsLayout()
         }
         else{
             // hide duration time bar
-            self.duration.isHidden = true
+            self.durationView.isHidden = true
+            //self.stoppedAtView.setNeedsLayout()
         }
     }
 }

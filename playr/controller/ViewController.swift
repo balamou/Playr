@@ -19,12 +19,12 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     //------------------------ Attributes ----------------------------------
     var movieView: UIView!
     var mediaPlayer = VLCMediaPlayer()
-    //let url = URL(string: "http://192.168.15.108/movies/war_dogs/war_dogs.mkv")
-    var url = URL(string: "http://192.168.15.108/movies/rick_and_morty/season_1/S1E1.mp4")
+    var url = "http://192.168.15.108/movies/rick_and_morty/season_1/S1E1.mp4"
+    var stoppedAt = 0
+    var duration = 1
     
     var _setPosition = true
     var updatePosition = true
-    
     var toolBarShown = true
     
     //----------------------------------------------------------------------
@@ -67,7 +67,12 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
 
     override func viewDidAppear(_ animated: Bool)
     {
-        let media = VLCMedia(url: self.url!)
+        guard let url = URL(string: self.url) else {
+            print("Something is wrong with URL: \(self.url)")
+            return
+        }
+        
+        let media = VLCMedia(url: url)
         mediaPlayer.media = media
         
         mediaPlayer.delegate = self
@@ -80,6 +85,10 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         // start playing
         mediaPlayer.play()
         pausePlayBtn.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        
+        if stoppedAt != 0 {
+            mediaPlayer.position = Float(stoppedAt)/Float(duration)
+        }
     }
     @objc func canRotate() -> Void {}
     

@@ -98,17 +98,18 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath) as! EpisodeCell
         
         
-        if let episodeCell = cell as? EpisodeCell,
-            let show = show,
+        if let show = show,
             let seasons = show.episodes[show.openSeason]
         {
-            episodeCell.episode = seasons[indexPath.row]
-            episodeCell.setup()
-            episodeCell.play = self.openVideoPlayer
+            cell.episode = seasons[indexPath.row]
+            cell.setup()
+            cell.play = self.openVideoPlayer
         }
+        
+      
         
         return cell
     }
