@@ -100,13 +100,26 @@ class MovieMenu: UIViewController{
            let series = ep.mainSeries
         {
             
-        
-        let seriesController = self.storyboard?.instantiateViewController(withIdentifier: "SeriesController") as! SeriesController
-        seriesController.series_id = series.series_id
-        seriesController.net = net
-        
-        self.navigationController?.pushViewController(seriesController, animated: true)
+            let seriesController = self.storyboard?.instantiateViewController(withIdentifier: "SeriesController") as! SeriesController
+            seriesController.series_id = series.series_id
+            seriesController.net = net
+            
+            self.navigationController?.pushViewController(seriesController, animated: true)
         }
+        else if let series = viewed as? Series
+        {
+            let seriesController = self.storyboard?.instantiateViewController(withIdentifier: "SeriesController") as! SeriesController
+            seriesController.series_id = series.series_id
+            seriesController.net = net
+            
+            self.navigationController?.pushViewController(seriesController, animated: true)
+        }
+        else if let movie = viewed as? Movie
+        {
+            return
+        }
+        
+        
     }
 
 
