@@ -16,6 +16,8 @@ class SeriesController: UIViewController {
     @IBOutlet weak var seasonsLabel: UILabel!
     @IBOutlet weak var currSeason: UIButton!
     
+    @IBOutlet weak var selectSeasons: UIView!
+    
     var show: Series?
     var series_id: Int!
     var net: NetworkModel!
@@ -36,24 +38,47 @@ class SeriesController: UIViewController {
         self.show = series
         
         descLabel.text = series.desc
+        currSeason.setTitle("Season \(series.openSeason)", for: .normal)
         
         if let url = series.poster
         {
             poster.loadCache(link: url, contentMode: .scaleAspectFit)
         }
         
-//        let newHeight = CGFloat(161 * series.episodes[selectedSeason]!.count)
-//        tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, newHeight)
+        
         seasonsLabel.text = "\(series.numSeasons) seasons"
         tableView.reloadData()
+        
+        // GENERATE seasons buttons
+        genButtons(numOfBtn: series.numSeasons)
     }
     
-    override func viewDidAppear(_ animated: Bool)
+    
+    private func genButtons(numOfBtn: Int)
     {
-        super.viewWillAppear(animated)
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        selectSeasons.addSubview(blurEffectView)
+        selectSeasons.sendSubview(toBack: blurEffectView)
         
-
+        for season in 1...numOfBtn
+        {
+            let h: CGFloat = 50
+            let y: CGFloat = (100 + (h + 10) * CGFloat(season))
+            
+            let btn: UIButton = UIButton(frame: CGRect(x: 100, y: y, width: 100, height: h))
+            btn.backgroundColor = UIColor.green
+            btn.setTitle("Season \(season)", for: .normal)
+            btn.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+            btn.tag = season
+      
+            selectSeasons.addSubview(btn) // add button to as subview
+        }
+        
     }
+    
     
     // STOP ROTATION ANIMATION
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
@@ -73,11 +98,31 @@ class SeriesController: UIViewController {
         //Close Controller
     }
     
-    @IBAction func changeSeason(_ sender: UIButton){
+    @IBAction func changeSeason(_ sender: UIButton)
+    {
         // Change Season
+        selectSeasons.isHidden = false // TODO: Maybe add animation instead of hidden/shown
+        
         
     }
+    
+    @IBAction func closeSeasonSelector(_ sender: UIButton)
+    {
+        selectSeasons.isHidden = true // TODO: Maybe add animation instead of hidden/shown
+    }
+    
+    @objc func buttonAction(_ sender: UIButton!)
+    {
+        guard let show = show else { return }
+        
+        selectSeasons.isHidden = true // TODO: Maybe add animation instead of hidden/shown
+        show.openSeason = sender.tag // SELECT Different season
+        tableView.reloadData() // Reload episodes in table
+        currSeason.setTitle("Season \(sender.tag)", for: .normal) // CHANGE button title
+    }
 }
+
+
 
 
 //----------------------------------------------------------------------
@@ -108,8 +153,6 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
             cell.setup()
             cell.play = self.openVideoPlayer
         }
-        
-      
         
         return cell
     }

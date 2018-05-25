@@ -303,6 +303,21 @@
                                     <action selector="changeSeason:" destination="yeP-OT-kv0" eventType="touchUpInside" id="VkC-Qk-ZT2"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Erz-2P-uFM" userLabel="Select Seasons">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYm-4p-Ctq">
+                                        <rect key="frame" x="168" y="591" width="39" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Close"/>
+                                        <connections>
+                                            <action selector="closeSeasonSelector:" destination="yeP-OT-kv0" eventType="touchUpInside" id="Bvv-bQ-XCF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="jj3-Uf-jdb"/>
@@ -312,12 +327,13 @@
                         <outlet property="descLabel" destination="k5S-XO-hg4" id="ByY-52-YcH"/>
                         <outlet property="poster" destination="EFT-tu-tn8" id="my2-fW-CkZ"/>
                         <outlet property="seasonsLabel" destination="W6U-TH-aSb" id="Oh4-yQ-6N1"/>
+                        <outlet property="selectSeasons" destination="Erz-2P-uFM" id="szB-Fi-aH7"/>
                         <outlet property="tableView" destination="rvq-Jd-fpC" id="QFj-Pg-aNo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhh-co-rJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="27"/>
+            <point key="canvasLocation" x="1136.8" y="26.53673163418291"/>
         </scene>
         <!--Movie Info-->
         <scene sceneID="VBT-dI-dsC">
