@@ -225,6 +225,8 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
         videoPlayer.stoppedAt = viewed.stoppedAt ?? 0
         videoPlayer.duration = viewed.duration
         videoPlayer.setTitle(viewed: viewed)
+        videoPlayer.viewing = viewed
+        videoPlayer.net = net
         
         self.navigationController?.pushViewController(videoPlayer, animated: true)
     }

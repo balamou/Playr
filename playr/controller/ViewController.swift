@@ -23,13 +23,20 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     var movieView: UIView!
     var mediaPlayer = VLCMediaPlayer()
     var url = "http://192.168.15.108/movies/rick_and_morty/season_1/S1E1.mp4"
-    var stoppedAt = 0
-    var duration = 1
     
     var _setPosition = true
     var updatePosition = true
     var toolBarShown = true
+    
+    
+    var stoppedAt = 0
+    var duration = 1
     var viewedTitle = "Back"
+    
+    var viewing: Viewed?
+    var net: NetworkModel!
+    
+    var timer = Timer()
     
     //----------------------------------------------------------------------
     // METHODS
@@ -91,7 +98,9 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         self.viewedTitle = tmpTitle
     }
     
-
+    //----------------------------------------------------------------------
+    // CONTROLLER LIFE CYCLE
+    //----------------------------------------------------------------------
     override func viewDidAppear(_ animated: Bool)
     {
         guard let url = URL(string: self.url) else {
@@ -125,10 +134,54 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         if stoppedAt != 0 {
             mediaPlayer.position = Float(stoppedAt)/Float(duration)
         }
+        
+         scheduledTimerWithTimeInterval()
     }
     @objc func canRotate() -> Void {}
     
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        
+        mediaPlayer.removeObserver(self, forKeyPath: "time") // remove observer
+        mediaPlayer.stop()
+        
+        // RESET ORIENTATION
+        if (self.isMovingFromParentViewController)
+        {
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        }
+    }
+    
+    // Hide status bar
+    override var prefersStatusBarHidden: Bool
+    {
+        return true
+    }
+    
+    //----------------------------------------------------------------------
+    // TIMER
+    //----------------------------------------------------------------------
+    func scheduledTimerWithTimeInterval()
+    {
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.updateStop), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateStop()
+    {
+        print("Updating stop..")
+        if let viewing = viewing {
+            net.updateStoppedAt(viewed: viewing, stopAt: Int(mediaPlayer.position * Float(duration)) )
+            
+            let t = Int(mediaPlayer.position * Float(duration))
+            print("\(t)")
+        }
+    }
+    //----------------------------------------------------------------------
+    // GRADIENT
+    //----------------------------------------------------------------------
     func setupGradient()
     {
         // BOTTOM BAR
@@ -149,27 +202,7 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        mediaPlayer.removeObserver(self, forKeyPath: "time") // remove observer
-        mediaPlayer.stop()
-        
-        // RESET ORIENTATION
-        if (self.isMovingFromParentViewController) {
-            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
-        }
-    }
-    
-    
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+   
     //----------------------------------------------------------------------
     // Orientation observer
     //----------------------------------------------------------------------
@@ -217,6 +250,7 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     //----------------------------------------------------------------------
     @IBAction func goBack(_ sender: UIButton)
     {
+        updateStop() // update stopped At
         // close Controller
         self.navigationController?.popViewController(animated: true)
     }

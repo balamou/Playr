@@ -210,6 +210,26 @@ class NetworkModel
         return s
     }
     
+    
+    // ------------------------------------------------------------------------------
+    // UPDATE STOPPED AT
+    // ------------------------------------------------------------------------------
+    func updateStoppedAt(viewed: Viewed, stopAt: Int)
+    {
+        var type = ""
+        if let _ = viewed as? Movie {
+            type = "movie"
+        }
+        else
+        {
+            type = "series"
+        }
+        
+        let url = State.shared.address + "requests/updateStoppedAt.php"
+        let query = "type=\(type)&id=\(viewed.id)&uid=\(State.shared.user_id)&stopAt=\(stopAt)"
+        let rNet = RawNet()
+        rNet.sendResult(urlPath: url, query: query)
+    }
 }
 
 
@@ -253,6 +273,22 @@ public class RawNet
                 }
             }
             // 7
+            dataTask?.resume()
+        }
+    }
+    
+    
+    
+    // SEND RESULT WITHOUT RESPONSE
+    func sendResult(urlPath: String, query: String)
+    {
+        dataTask?.cancel()
+        if var urlComponents = URLComponents(string: urlPath) {
+            urlComponents.query = query
+            guard let url = urlComponents.url else { return }
+            dataTask = defaultSession.dataTask(with: url) { data, response, error in
+                
+            }
             dataTask?.resume()
         }
     }

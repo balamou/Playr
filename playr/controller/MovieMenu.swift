@@ -94,6 +94,9 @@ class MovieMenu: UIViewController{
         videoPlayer.duration = viewed.duration
         videoPlayer.setTitle(viewed: viewed)
         
+        videoPlayer.viewing = viewed
+        videoPlayer.net = net
+        
         self.navigationController?.pushViewController(videoPlayer, animated: true)
     }
 
