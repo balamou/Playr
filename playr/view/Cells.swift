@@ -41,7 +41,7 @@ class ViewedRow: UITableViewCell, UICollectionViewDelegate, UICollectionViewData
     private func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
     {
         let itemsPerRow: CGFloat = 4
-        let hardCodedPadding: CGFloat = 5
+        let hardCodedPadding: CGFloat = 8
         let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
         let itemHeight = collectionView.bounds.height - (2 * hardCodedPadding)
         
@@ -104,7 +104,7 @@ class CategoryRow: UITableViewCell, UICollectionViewDataSource, UICollectionView
     private func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
     {
         let itemsPerRow: CGFloat = 4
-        let hardCodedPadding: CGFloat = 5
+        let hardCodedPadding: CGFloat = 8
         let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
         let itemHeight = collectionView.bounds.height - (2 * hardCodedPadding)
         
