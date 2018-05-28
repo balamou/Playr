@@ -406,8 +406,8 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ODU-LY-cSS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.098163813350000004" green="0.098161101340000001" blue="0.098162919279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexBackgroundColor" red="0.098163813350000004" green="0.098161101340000001" blue="0.098162919279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ViewedRow" rowHeight="230" id="Pih-c5-lB2" userLabel="ViewedRow" customClass="ViewedRow" customModule="playr" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="230"/>
@@ -418,7 +418,8 @@
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IkJ-8N-JCh" userLabel="Collection">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
-                                                    <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.098163813352584839" green="0.098161101341247559" blue="0.098162919282913208" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="tintColor" red="0.098163813350000004" green="0.098161101340000001" blue="0.098162919279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="8" minimumInteritemSpacing="8" id="Pn0-8f-RNG">
                                                         <size key="itemSize" width="105" height="195"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -513,7 +514,8 @@
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bSg-Pw-AZR" userLabel="Collection">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
-                                                    <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.098163813350000004" green="0.098161101340000001" blue="0.098162919279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="tintColor" red="0.098163813350000004" green="0.098161101340000001" blue="0.098162919279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="8" minimumInteritemSpacing="8" id="17s-Qb-GZJ">
                                                         <size key="itemSize" width="107" height="157"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -560,6 +562,7 @@
                                                 <constraint firstItem="bSg-Pw-AZR" firstAttribute="top" secondItem="B5C-Ab-ncy" secondAttribute="top" id="xmQ-1G-J9T"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.098163813350000004" green="0.098161101340000001" blue="0.098162919279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="collectionCell" destination="bSg-Pw-AZR" id="YhG-ux-kPm"/>
                                         </connections>
@@ -571,7 +574,8 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.098163813350000004" green="0.098161101340000001" blue="0.098162919279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.098163813350000004" green="0.098161101340000001" blue="0.098162919279999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="ODU-LY-cSS" firstAttribute="leading" secondItem="ohw-8N-kXl" secondAttribute="leading" id="BMs-rf-9CW"/>
                             <constraint firstItem="ODU-LY-cSS" firstAttribute="top" secondItem="TEG-zr-YmN" secondAttribute="top" id="IpI-bG-YCr"/>
