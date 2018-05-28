@@ -35,7 +35,7 @@ class EpisodeCell: UITableViewCell {
     @IBOutlet weak var durationView: UIView!
     
     var episode: Episode!
-    var play: (String) -> () = {_ in}
+    var play: (Viewed) -> () = {_ in}
     
     func setup()
     {
@@ -55,7 +55,7 @@ class EpisodeCell: UITableViewCell {
     
     @IBAction func playEpisode(_ sender: UIButton)
     {
-        self.play(episode.URL)
+        self.play(episode)
     }
     
     // Set view width

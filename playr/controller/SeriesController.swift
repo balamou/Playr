@@ -66,7 +66,7 @@ class SeriesController: UIViewController {
    
     override func viewWillAppear(_ animated: Bool)
     {
-         // HIDE NAV BAR
+        // HIDE NAV BAR
         self.navigationController?.isNavigationBarHidden = true
         
         // SET STATUS BAR TO LIGHT
@@ -152,7 +152,7 @@ class SeriesController: UIViewController {
     @IBAction func exit(_ sender: UIButton) {
         // show nav bar
         self.navigationController?.isNavigationBarHidden = false
-        //Close Controller
+        // close Controller
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -214,15 +214,19 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+
     
-    func openVideoPlayer(movieURL: String)
+    // MARK: OPEN VIDEO PLAYER
+    func openVideoPlayer(viewed: Viewed)
     {
-        // OPEN VIDEO PLAYER
-        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        secondViewController.url = movieURL
+        let videoPlayer = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         
-        self.navigationController?.pushViewController(secondViewController, animated: true)
-        // OPEN VIDEO PLAYER
+        videoPlayer.url = viewed.URL
+        videoPlayer.stoppedAt = viewed.stoppedAt ?? 0
+        videoPlayer.duration = viewed.duration
+        videoPlayer.setTitle(viewed: viewed)
+        
+        self.navigationController?.pushViewController(videoPlayer, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat

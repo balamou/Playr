@@ -15,6 +15,9 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     @IBOutlet weak var timeDisplay: UILabel!
     @IBOutlet weak var pausePlayBtn: UIButton!
     @IBOutlet weak var tools: UIView!
+    @IBOutlet weak var topBar: UIView!
+    
+    @IBOutlet weak var titleButton: UIButton!
     
     //------------------------ Attributes ----------------------------------
     var movieView: UIView!
@@ -26,6 +29,7 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     var _setPosition = true
     var updatePosition = true
     var toolBarShown = true
+    var viewedTitle = "Back"
     
     //----------------------------------------------------------------------
     // METHODS
@@ -64,6 +68,29 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         super.viewWillTransition(to: size, with: coordinator)
     }
     
+    // SET TITLE
+    func setTitle(viewed: Viewed)
+    {
+        var tmpTitle = "Back"
+        
+        if let ep = viewed as? Episode {
+            if let s = ep.mainSeries,
+                let t = s.title
+            {
+                tmpTitle = "\(t) S\(ep.season):E\(ep.episode) \"\(ep.title ?? "N/A")\"" // Rick and Morty S1:E1 "Pilot"
+            }
+            else
+            {
+                tmpTitle = "S\(ep.season):E\(ep.episode) \"\(ep.title ?? "N/A")\"" // S1:E1 "Pilot"
+            }
+        }
+        else if let mov = viewed as? Movie {
+            tmpTitle = mov.title ?? "Back"
+        }
+       
+        self.viewedTitle = tmpTitle
+    }
+    
 
     override func viewDidAppear(_ animated: Bool)
     {
@@ -71,6 +98,14 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
             print("Something is wrong with URL: \(self.url)")
             return
         }
+        
+        // hide nav bar
+        self.navigationController?.isNavigationBarHidden = true
+        
+        // setup title
+        titleButton.setTitle(viewedTitle, for: .normal)
+        
+        // setup gradient
         setupGradient()
         
         let media = VLCMedia(url: url)
@@ -96,12 +131,22 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     
     func setupGradient()
     {
+        // BOTTOM BAR
         let gradient = CAGradientLayer()
         
         gradient.frame = tools.bounds
-        gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.cgColor]
+        gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
         
         tools.layer.insertSublayer(gradient, at: 0)
+        
+        // TOP BAR
+        let gradientTop = CAGradientLayer()
+        
+        gradientTop.frame = topBar.bounds
+        gradientTop.colors = [UIColor.black.withAlphaComponent(0.5).cgColor, UIColor.black.withAlphaComponent(0).cgColor]
+        
+        topBar.layer.insertSublayer(gradientTop, at: 0)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -150,16 +195,30 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     //----------------------------------------------------------------------
     @objc func movieViewTapped(_ sender: UITapGestureRecognizer)
     {
+        self.setNeedsStatusBarAppearanceUpdate()
         if toolBarShown {
             tools.isHidden = true
-            self.navigationController?.isNavigationBarHidden = true
+            topBar.isHidden = true
+            UIApplication.shared.keyWindow?.windowLevel = UIWindowLevelStatusBar // Hide status bar
         }
         else {
              tools.isHidden = false
-            self.navigationController?.isNavigationBarHidden = false
+             topBar.isHidden = false
+             UIApplication.shared.keyWindow?.windowLevel = UIWindowLevelNormal // Show the status bar
         }
         
         toolBarShown = !toolBarShown
+    }
+    
+ 
+    
+    //----------------------------------------------------------------------
+    // GO BACK
+    //----------------------------------------------------------------------
+    @IBAction func goBack(_ sender: UIButton)
+    {
+        // close Controller
+        self.navigationController?.popViewController(animated: true)
     }
     
     //----------------------------------------------------------------------

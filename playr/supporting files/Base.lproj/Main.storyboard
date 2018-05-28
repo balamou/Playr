@@ -117,11 +117,48 @@
                                     <constraint firstAttribute="trailing" secondItem="8z8-od-CBF" secondAttribute="trailing" id="vAE-tO-Ged"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGI-7A-yVb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wy-f7-Atk">
+                                        <rect key="frame" x="20" y="10" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="mJV-5H-nKI"/>
+                                            <constraint firstAttribute="width" constant="40" id="rq3-HZ-bSI"/>
+                                        </constraints>
+                                        <state key="normal" image="back"/>
+                                        <connections>
+                                            <action selector="goBack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2mM-PU-jAx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfp-Ls-8i0">
+                                        <rect key="frame" x="68" y="14.5" width="287" height="31"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <state key="normal" title="Title">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GND-dc-pEx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7wy-f7-Atk" firstAttribute="top" secondItem="TGI-7A-yVb" secondAttribute="top" constant="10" id="IkD-Ao-472"/>
+                                    <constraint firstItem="Zfp-Ls-8i0" firstAttribute="leading" secondItem="7wy-f7-Atk" secondAttribute="trailing" constant="8" id="Nt0-sF-oD4"/>
+                                    <constraint firstAttribute="height" constant="80" id="YQT-mx-Tip"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zfp-Ls-8i0" secondAttribute="trailing" constant="20" id="e1y-zT-nhq"/>
+                                    <constraint firstItem="Zfp-Ls-8i0" firstAttribute="centerY" secondItem="7wy-f7-Atk" secondAttribute="centerY" id="hAf-tm-1ev"/>
+                                    <constraint firstItem="7wy-f7-Atk" firstAttribute="leading" secondItem="TGI-7A-yVb" secondAttribute="leading" constant="20" id="wxd-Ik-suJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="A1t-RA-HKt" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="11G-YA-7UQ"/>
                             <constraint firstItem="A1t-RA-HKt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EkN-ag-uet"/>
+                            <constraint firstItem="TGI-7A-yVb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="WyZ-ds-AaD"/>
+                            <constraint firstItem="TGI-7A-yVb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="b2K-B7-uhK"/>
+                            <constraint firstItem="TGI-7A-yVb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dmD-RG-jf0"/>
                             <constraint firstItem="A1t-RA-HKt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="k7r-zO-Un3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -131,7 +168,9 @@
                         <outlet property="pausePlayBtn" destination="JJ0-82-xBD" id="xPx-wQ-fMx"/>
                         <outlet property="slider" destination="zei-K5-xqu" id="3yo-5i-73R"/>
                         <outlet property="timeDisplay" destination="2X8-kx-OHe" id="fWq-Z0-glc"/>
+                        <outlet property="titleButton" destination="Zfp-Ls-8i0" id="jm9-hw-ZcI"/>
                         <outlet property="tools" destination="A1t-RA-HKt" id="q6F-Uv-dLz"/>
+                        <outlet property="topBar" destination="TGI-7A-yVb" id="9NF-TR-UP3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -286,8 +325,8 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTJ-6c-jBH">
-                                                            <rect key="frame" x="153" y="24" width="212" height="13"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                                            <rect key="frame" x="153" y="24" width="212" height="14"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                             <color key="textColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -670,6 +709,7 @@
     </scenes>
     <resources>
         <image name="arrow" width="19" height="22"/>
+        <image name="back" width="10" height="19"/>
         <image name="continue" width="58" height="58"/>
         <image name="exit" width="26" height="26"/>
         <image name="info" width="20" height="20"/>

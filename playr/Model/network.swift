@@ -189,6 +189,7 @@ class NetworkModel
             if let dict = episodeDict as? JSONDictionary,
                 let item = Episode(json: dict)
             {
+                item.mainSeries = s // Point back
                 
                 if s.episodes[item.season] != nil {
                     s.episodes[item.season]?.append(item)

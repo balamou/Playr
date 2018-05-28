@@ -70,6 +70,7 @@ class MovieMenu: UIViewController{
         super.viewWillAppear(animated)
         // SET STATUS BAR TO LIGHT
         UIApplication.shared.statusBarStyle = .lightContent
+        
     }
     
     // STOP ROTATION ANIMATION
@@ -91,7 +92,8 @@ class MovieMenu: UIViewController{
         videoPlayer.url = viewed.URL
         videoPlayer.stoppedAt = viewed.stoppedAt ?? 0
         videoPlayer.duration = viewed.duration
-
+        videoPlayer.setTitle(viewed: viewed)
+        
         self.navigationController?.pushViewController(videoPlayer, animated: true)
     }
 
@@ -188,7 +190,7 @@ extension MovieMenu: UITableViewDataSource, UITableViewDelegate
                 categoryCell.rowType = "Movie"
             }
             else if indexPath.section == seriesRow {
-            categoryCell.rowType = "Series"
+                categoryCell.rowType = "Series"
             }
                 
             return categoryCell
