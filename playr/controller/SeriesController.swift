@@ -18,6 +18,9 @@ class SeriesController: UIViewController {
     
     @IBOutlet weak var selectSeasons: UIView!
     
+    @IBOutlet weak var seriesInfView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var show: Series?
     var series_id: Int!
     var net: NetworkModel!
@@ -48,6 +51,12 @@ class SeriesController: UIViewController {
         
         seasonsLabel.text = "\(series.numSeasons) seasons"
         tableView.reloadData()
+        
+        // SET TABLE HEIGHT
+        let newHeight = CGFloat(161 * (series.episodes[series.openSeason]?.count)!)
+        tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, newHeight)
+        scrollView.contentSize = CGSize(width: seriesInfView.frame.width, height: seriesInfView.frame.height + newHeight)
+        
         
         // GENERATE seasons buttons
         genButtons(numOfBtn: series.numSeasons)
