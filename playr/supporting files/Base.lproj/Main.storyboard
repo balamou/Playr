@@ -198,11 +198,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oxT-Og-rNt">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxT-Og-rNt">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yie-st-vI9" userLabel="SeriesInfo">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yie-st-vI9" userLabel="SeriesInfo">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="465"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -286,7 +286,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTJ-6c-jBH">
-                                                            <rect key="frame" x="153" y="24" width="34" height="13"/>
+                                                            <rect key="frame" x="153" y="24" width="212" height="13"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                                                             <color key="textColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -351,6 +351,7 @@
                                                         <constraint firstItem="Rgg-6X-cFq" firstAttribute="leading" secondItem="yYX-iF-FgF" secondAttribute="leading" constant="13" id="Lua-kp-uBU"/>
                                                         <constraint firstAttribute="trailing" secondItem="cCS-xK-PtK" secondAttribute="trailing" constant="10" id="aXx-S1-RiD"/>
                                                         <constraint firstItem="tTJ-6c-jBH" firstAttribute="leading" secondItem="3P8-Y1-gbT" secondAttribute="trailing" constant="11" id="bbv-J8-vOR"/>
+                                                        <constraint firstAttribute="trailing" secondItem="tTJ-6c-jBH" secondAttribute="trailing" constant="10" id="j5M-OI-Afq"/>
                                                         <constraint firstItem="3P8-Y1-gbT" firstAttribute="leading" secondItem="yYX-iF-FgF" secondAttribute="leading" constant="13" id="mTd-RG-P35"/>
                                                         <constraint firstItem="Rgg-6X-cFq" firstAttribute="top" secondItem="3P8-Y1-gbT" secondAttribute="bottom" constant="12" id="pbE-x6-jcA"/>
                                                         <constraint firstItem="tTJ-6c-jBH" firstAttribute="top" secondItem="cCS-xK-PtK" secondAttribute="bottom" id="x1d-xA-9CS"/>

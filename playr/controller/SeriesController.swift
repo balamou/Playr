@@ -32,7 +32,6 @@ class SeriesController: UIViewController {
     {
         super.viewDidLoad()
         
-        
         net.loadFullSeries(series_id: series_id, completion: setupData)
     }
     
@@ -57,6 +56,8 @@ class SeriesController: UIViewController {
         tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, newHeight)
         scrollView.contentSize = CGSize(width: seriesInfView.frame.width, height: seriesInfView.frame.height + newHeight)
         
+        // Add blur background poster
+        genBlurBackground()
         
         // GENERATE seasons buttons
         genButtons(numOfBtn: series.numSeasons)
@@ -70,6 +71,42 @@ class SeriesController: UIViewController {
         
         // SET STATUS BAR TO LIGHT
         UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    private func genBlurBackground()
+    {
+        let frm = CGRect(frame: seriesInfView.frame, newHeight: seriesInfView.frame.height - CGFloat(50.0))
+        
+        // BLUR
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = frm
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // POSTER +++++
+        let bkgPoster = UIImageView(frame: frm)
+        //bkgPoster.insetsLayoutMarginsFromSafeArea = false
+        
+        if let show = self.show,
+           let url = show.poster
+        {
+            bkgPoster.loadCache(link: url, contentMode: .scaleToFill)
+        }
+        
+        // GRADIENT ++++
+        let gradient = CAGradientLayer()
+        let gradHeight = CGFloat(50.0)
+        
+        gradient.frame = CGRect(seriesInfView.frame.minX, frm.height - gradHeight, seriesInfView.frame.width, gradHeight)
+        gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, #colorLiteral(red: 0.09803921569, green: 0.09803921569, blue: 0.09803921569, alpha: 1).cgColor] // UIColor.black.cgColor
+        
+        // ADD VIEWS
+        seriesInfView.addSubview(blurEffectView)
+        seriesInfView.addSubview(bkgPoster)
+        bkgPoster.layer.insertSublayer(gradient, at: 0)
+        
+        seriesInfView.sendSubview(toBack: blurEffectView)
+        seriesInfView.sendSubview(toBack: bkgPoster)
     }
     
     private func genButtons(numOfBtn: Int)

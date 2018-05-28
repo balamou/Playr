@@ -44,4 +44,13 @@ extension CGRect {
         
         self.init(x:x, y:y, width:w, height:h)
     }
+    
+    init(frame: CGRect, newWidth: CGFloat){
+        self.init(x:frame.minX, y:frame.minY, width:newWidth, height:frame.height)
+    }
+    
+    
+    init(frame: CGRect, newHeight: CGFloat){
+        self.init(x:frame.minX, y:frame.minY, width:frame.width, height:newHeight)
+    }
 }
