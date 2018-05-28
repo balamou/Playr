@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -265,6 +264,7 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rvq-Jd-fpC" userLabel="Episodes">
                                         <rect key="frame" x="0.0" y="465" width="375" height="202"/>
@@ -339,7 +339,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plot" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgg-6X-cFq">
-                                                            <rect key="frame" x="13" y="89" width="352" height="61"/>
+                                                            <rect key="frame" x="13" y="89" width="347" height="17"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -347,19 +347,19 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="Rgg-6X-cFq" firstAttribute="leading" secondItem="3P8-Y1-gbT" secondAttribute="leading" id="0JG-iN-VvN"/>
                                                         <constraint firstItem="cCS-xK-PtK" firstAttribute="top" secondItem="yYX-iF-FgF" secondAttribute="top" constant="5" id="BeT-Ou-e1u"/>
-                                                        <constraint firstItem="Rgg-6X-cFq" firstAttribute="trailing" secondItem="cCS-xK-PtK" secondAttribute="trailing" id="OsM-75-oue"/>
-                                                        <constraint firstItem="Rgg-6X-cFq" firstAttribute="bottom" secondItem="yYX-iF-FgF" secondAttribute="bottomMargin" id="YZA-wh-XZW"/>
+                                                        <constraint firstItem="Rgg-6X-cFq" firstAttribute="leading" secondItem="yYX-iF-FgF" secondAttribute="leading" constant="13" id="Lua-kp-uBU"/>
                                                         <constraint firstAttribute="trailing" secondItem="cCS-xK-PtK" secondAttribute="trailing" constant="10" id="aXx-S1-RiD"/>
                                                         <constraint firstItem="tTJ-6c-jBH" firstAttribute="leading" secondItem="3P8-Y1-gbT" secondAttribute="trailing" constant="11" id="bbv-J8-vOR"/>
                                                         <constraint firstItem="3P8-Y1-gbT" firstAttribute="leading" secondItem="yYX-iF-FgF" secondAttribute="leading" constant="13" id="mTd-RG-P35"/>
-                                                        <constraint firstItem="Rgg-6X-cFq" firstAttribute="top" secondItem="3P8-Y1-gbT" secondAttribute="bottom" constant="12" id="pQD-cn-zlM"/>
+                                                        <constraint firstItem="Rgg-6X-cFq" firstAttribute="top" secondItem="3P8-Y1-gbT" secondAttribute="bottom" constant="12" id="pbE-x6-jcA"/>
                                                         <constraint firstItem="tTJ-6c-jBH" firstAttribute="top" secondItem="cCS-xK-PtK" secondAttribute="bottom" id="x1d-xA-9CS"/>
                                                         <constraint firstItem="cCS-xK-PtK" firstAttribute="leading" secondItem="3P8-Y1-gbT" secondAttribute="trailing" constant="11" id="xgZ-j7-5ke"/>
                                                         <constraint firstItem="3P8-Y1-gbT" firstAttribute="top" secondItem="yYX-iF-FgF" secondAttribute="top" constant="5" id="y55-mG-IFz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Rgg-6X-cFq" secondAttribute="trailing" constant="15" id="zgu-sB-CkX"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
                                                     <outlet property="duration" destination="tTJ-6c-jBH" id="ICK-GN-Zy2"/>
                                                     <outlet property="durationView" destination="Y3g-Or-SHs" id="JNz-2B-N7v"/>

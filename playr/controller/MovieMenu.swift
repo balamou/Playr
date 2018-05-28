@@ -68,6 +68,8 @@ class MovieMenu: UIViewController{
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
+        // SET STATUS BAR TO LIGHT
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     // STOP ROTATION ANIMATION

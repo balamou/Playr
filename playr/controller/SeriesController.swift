@@ -62,9 +62,14 @@ class SeriesController: UIViewController {
         genButtons(numOfBtn: series.numSeasons)
     }
     
-    // HIDE NAV BAR
-    override func viewWillAppear(_ animated: Bool) {
+   
+    override func viewWillAppear(_ animated: Bool)
+    {
+         // HIDE NAV BAR
         self.navigationController?.isNavigationBarHidden = true
+        
+        // SET STATUS BAR TO LIGHT
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     private func genButtons(numOfBtn: Int)
@@ -108,7 +113,10 @@ class SeriesController: UIViewController {
     // MARK: IBACTION
     //----------------------------------------------------------------------
     @IBAction func exit(_ sender: UIButton) {
+        // show nav bar
+        self.navigationController?.isNavigationBarHidden = false
         //Close Controller
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func changeSeason(_ sender: UIButton)
