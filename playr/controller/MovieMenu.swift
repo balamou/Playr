@@ -116,13 +116,12 @@ class MovieMenu: UIViewController{
         }
         else if let movie = viewed as? Movie
         {
-            return
+            let movieInfo = self.storyboard?.instantiateViewController(withIdentifier: "MovieInfo") as! MovieInfo
+            movieInfo.movie = movie
+    
+            self.navigationController?.pushViewController(movieInfo, animated: true)
         }
-        
-        
     }
-
-
 }
 
 
