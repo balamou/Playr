@@ -44,6 +44,7 @@ class EpisodeCell: UITableViewCell {
         }
         
         self.title.text = "\(episode.episode). \(episode.title ?? "N/A")"
+        self.title.sizeToFit()
         self.duration.text = episode.durationMin()
         self.plot.text = episode.plot
         

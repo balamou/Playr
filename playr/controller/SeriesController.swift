@@ -53,6 +53,10 @@ class SeriesController: UIViewController {
         genButtons(numOfBtn: series.numSeasons)
     }
     
+    // HIDE NAV BAR
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
     
     private func genButtons(numOfBtn: Int)
     {

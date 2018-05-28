@@ -126,9 +126,23 @@ class MovieMenu: UIViewController{
 
 
 
+// --------------------------------------------------------------------------
+// MARK: TABLE VIEW
+// --------------------------------------------------------------------------
 
 extension MovieMenu: UITableViewDataSource, UITableViewDelegate
 {
+    // CHANGE HEADER TEXT TO WHITE & CHANGE HEADER BACKGROUND
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection: Int)
+    {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.textColor = UIColor.white // change text color
+            view.tintColor = #colorLiteral(red: 0.09803921569, green: 0.09803921569, blue: 0.09803921569, alpha: 1) // change background color
+        }
+    }
+    
+   
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return categories[section]
     }
@@ -146,7 +160,13 @@ extension MovieMenu: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 148
+        if indexPath.section == viewRow {
+            return 200 // viewed height
+        }
+        else
+        {
+            return 160 // movie/series height
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
