@@ -71,6 +71,7 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
             print("Something is wrong with URL: \(self.url)")
             return
         }
+        setupGradient()
         
         let media = VLCMedia(url: url)
         mediaPlayer.media = media
@@ -92,6 +93,16 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     }
     @objc func canRotate() -> Void {}
     
+    
+    func setupGradient()
+    {
+        let gradient = CAGradientLayer()
+        
+        gradient.frame = tools.bounds
+        gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.cgColor]
+        
+        tools.layer.insertSublayer(gradient, at: 0)
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
