@@ -293,7 +293,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.82352941176470584" green="0.18431372549019609" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3um-Hv-x0t">
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3um-Hv-x0t" userLabel="Season">
                                                 <rect key="frame" x="339" y="16" width="26" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="exit"/>
@@ -301,11 +301,16 @@
                                                     <action selector="exit:" destination="yeP-OT-kv0" eventType="touchUpInside" id="ab9-f9-T6V"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwx-tg-LKo" userLabel="arrow">
+                                                <rect key="frame" x="99" y="424" width="9" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="season_arrow"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rvq-Jd-fpC" userLabel="Episodes">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rvq-Jd-fpC" userLabel="Episodes">
                                         <rect key="frame" x="0.0" y="465" width="375" height="202"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
@@ -417,23 +422,35 @@
                                     </tableView>
                                 </subviews>
                             </scrollView>
-                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Erz-2P-uFM" userLabel="Select Seasons">
-                                <rect key="frame" x="0.0" y="667" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Erz-2P-uFM" userLabel="Select Seasons">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYm-4p-Ctq">
-                                        <rect key="frame" x="168" y="591" width="39" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Close"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYm-4p-Ctq">
+                                        <rect key="frame" x="162" y="554" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="ko6-WM-4DQ"/>
+                                            <constraint firstAttribute="height" constant="50" id="y7O-Ak-tLY"/>
+                                        </constraints>
+                                        <state key="normal" image="close"/>
                                         <connections>
                                             <action selector="closeSeasonSelector:" destination="yeP-OT-kv0" eventType="touchUpInside" id="Bvv-bQ-XCF"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="iYm-4p-Ctq" firstAttribute="centerX" secondItem="Erz-2P-uFM" secondAttribute="centerX" id="V2r-kD-k0w"/>
+                                    <constraint firstAttribute="bottom" secondItem="iYm-4p-Ctq" secondAttribute="bottom" constant="63" id="th5-MB-Ua9"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Erz-2P-uFM" firstAttribute="bottom" secondItem="jj3-Uf-jdb" secondAttribute="bottom" id="Q0E-4Z-s0m"/>
+                            <constraint firstItem="Erz-2P-uFM" firstAttribute="leading" secondItem="jj3-Uf-jdb" secondAttribute="leading" id="dQZ-N8-WuL"/>
+                            <constraint firstItem="Erz-2P-uFM" firstAttribute="trailing" secondItem="jj3-Uf-jdb" secondAttribute="trailing" id="us5-7f-i3d"/>
+                            <constraint firstItem="Erz-2P-uFM" firstAttribute="top" secondItem="3rU-o1-HYd" secondAttribute="top" id="xie-Ii-hTO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="jj3-Uf-jdb"/>
                     </view>
                     <connections>
@@ -710,10 +727,12 @@
     <resources>
         <image name="arrow" width="19" height="22"/>
         <image name="back" width="10" height="19"/>
+        <image name="close" width="50" height="50"/>
         <image name="continue" width="58" height="58"/>
         <image name="exit" width="26" height="26"/>
         <image name="info" width="20" height="20"/>
         <image name="play" width="19" height="22"/>
         <image name="play_small" width="30" height="30"/>
+        <image name="season_arrow" width="9" height="5"/>
     </resources>
 </document>

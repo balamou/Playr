@@ -49,12 +49,13 @@ class SeriesController: UIViewController {
         
         
         seasonsLabel.text = "\(series.numSeasons) seasons"
-        tableView.reloadData()
         
-        // SET TABLE HEIGHT
+        // SET TABLE HEIGHT & SCROLL CONTENT SIZE
         let newHeight = CGFloat(161 * (series.episodes[series.openSeason]?.count)!)
         tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, newHeight)
         scrollView.contentSize = CGSize(width: seriesInfView.frame.width, height: seriesInfView.frame.height + newHeight)
+        
+        tableView.reloadData()
         
         // Add blur background poster
         genBlurBackground()
@@ -71,8 +72,13 @@ class SeriesController: UIViewController {
         
         // SET STATUS BAR TO LIGHT
         UIApplication.shared.statusBarStyle = .lightContent
+        
     }
     
+    
+    //----------------------------------------------------------------------
+    // GENERATE BLUR BACKGROUND & GRADIENT
+    //----------------------------------------------------------------------
     private func genBlurBackground()
     {
         let frm = CGRect(frame: seriesInfView.frame, newHeight: seriesInfView.frame.height - CGFloat(50.0))
@@ -109,6 +115,9 @@ class SeriesController: UIViewController {
         seriesInfView.sendSubview(toBack: bkgPoster)
     }
     
+    //----------------------------------------------------------------------
+    // GENERATE SEASON BUTTONS
+    //----------------------------------------------------------------------
     private func genButtons(numOfBtn: Int)
     {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
@@ -123,11 +132,16 @@ class SeriesController: UIViewController {
             let h: CGFloat = 50
             let y: CGFloat = (100 + (h + 10) * CGFloat(season))
             
-            let btn: UIButton = UIButton(frame: CGRect(x: 100, y: y, width: 100, height: h))
-            btn.backgroundColor = UIColor.green
+            let btn: UIButton = UIButton(frame: CGRect(x: 137, y: y, width: 100, height: h))
+            //btn.backgroundColor = UIColor.green
             btn.setTitle("Season \(season)", for: .normal)
             btn.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             btn.tag = season
+            
+            if let show = self.show, season == show.openSeason {
+                //btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+                btn.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 19)
+            }
       
             selectSeasons.addSubview(btn) // add button to as subview
         }
@@ -135,7 +149,9 @@ class SeriesController: UIViewController {
     }
     
     
-    // STOP ROTATION ANIMATION
+    //----------------------------------------------------------------------
+    // MARK: STOP ROTATION ANIMATION
+    //----------------------------------------------------------------------
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
     {
         coordinator.animate(alongsideTransition: nil) { (_) in
@@ -161,7 +177,6 @@ class SeriesController: UIViewController {
         // Change Season
         selectSeasons.isHidden = false // TODO: Maybe add animation instead of hidden/shown
         
-        
     }
     
     @IBAction func closeSeasonSelector(_ sender: UIButton)
@@ -175,8 +190,25 @@ class SeriesController: UIViewController {
         
         selectSeasons.isHidden = true // TODO: Maybe add animation instead of hidden/shown
         show.openSeason = sender.tag // SELECT Different season
-        tableView.reloadData() // Reload episodes in table
         currSeason.setTitle("Season \(sender.tag)", for: .normal) // CHANGE button title
+        
+        // UI: Change button boldness
+        for tag in 1...show.numSeasons {
+            let tmpButton = self.selectSeasons.viewWithTag(tag) as? UIButton
+            //tmpButton?.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+            tmpButton?.titleLabel?.font = UIFont(name: "HelveticaNeue-Regular", size: 19)
+           
+        }
+        
+        //sender.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18) // make current button bold
+        sender.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 19) // make current button bold
+        
+        // UI: SET TABLE HEIGHT & SCROLL CONTENT SIZE
+        let newHeight = CGFloat(161 * (show.episodes[show.openSeason]?.count)!)
+        tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, newHeight)
+        scrollView.contentSize = CGSize(width: seriesInfView.frame.width, height: seriesInfView.frame.height + newHeight)
+        
+        tableView.reloadData() // Reload episodes in table
     }
 }
 
@@ -225,6 +257,7 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
         videoPlayer.stoppedAt = viewed.stoppedAt ?? 0
         videoPlayer.duration = viewed.duration
         videoPlayer.setTitle(viewed: viewed)
+        
         videoPlayer.viewing = viewed
         videoPlayer.net = net
         

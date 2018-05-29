@@ -149,6 +149,7 @@ class NetworkModel
             if item.series_id == series_id
             {
                 completion(item)
+                return
             }
         }
         
@@ -161,6 +162,7 @@ class NetworkModel
             data in
 
             if let series = data as? Series {
+                self.seriesOpened.append(series) // save
                 completion(series)
             }
         }
