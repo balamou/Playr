@@ -72,7 +72,6 @@ class SeriesController: UIViewController {
         
         // SET STATUS BAR TO LIGHT
         UIApplication.shared.statusBarStyle = .lightContent
-        
     }
     
     
@@ -165,7 +164,8 @@ class SeriesController: UIViewController {
     //----------------------------------------------------------------------
     // MARK: IBACTION
     //----------------------------------------------------------------------
-    @IBAction func exit(_ sender: UIButton) {
+    @IBAction func exit(_ sender: UIButton)
+    {
         // show nav bar
         self.navigationController?.isNavigationBarHidden = false
         // close Controller
