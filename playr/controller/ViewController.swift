@@ -19,6 +19,8 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     
     @IBOutlet weak var titleButton: UIButton!
     
+    
+    @IBOutlet weak var timeLabel: UILabel! // BIG TIME LETTERS
     //------------------------ Attributes ----------------------------------
     var movieView: UIView!
     var mediaPlayer = VLCMediaPlayer()
@@ -279,6 +281,13 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         }
     }
     
+    
+    // REWIND
+    @IBAction func rewind(_ sender: UIButton) {
+        mediaPlayer.jumpBackward(Int32(10))
+    }
+    
+    
     //----------------------------------------------------------------------
     // Slider
     //----------------------------------------------------------------------
@@ -299,17 +308,20 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     @IBAction func touchUpOutside(_ sender: UISlider) {
         positionSliderAction()
         print("SET!")
+        timeLabel.isHidden = true // hide time label
     }
 
     @IBAction func touchUpInside(_ sender: UISlider) {
         positionSliderAction()
         print("SET!")
+        timeLabel.isHidden = true // hide time label
     }
     
     // When the slider is touched
     @IBAction func touchDown(_ sender: UISlider) {
          print("TOUCH DOWN!")
          updatePosition = false
+         timeLabel.isHidden = false // show time label
     }
     
     func positionSliderAction()
@@ -330,17 +342,33 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         }
     }
     
-    // Update time label as slider is moving
+    //----------------------------------------------------------------------
+    // MARK: Update time label as slider is moving
+    //----------------------------------------------------------------------
     @IBAction func valueChanged(_ sender: UISlider)
     {
         //let conv:VLCTime = VLCTime.init(int: Int32(sender.value))
         //timeDisplay.text = conv.description
+        
+        timeLabel.text = durationMin(seconds: Int(sender.value * Float(viewing.duration)))
     }
     
-    @IBAction func rewind(_ sender: UIButton) {
-        mediaPlayer.jumpBackward(Int32(10))
+    
+    private func durationMin(seconds sec: Int) -> String
+    {
+        let hours: Int = sec / 3600
+        let minutes: Int = (sec % 3600) / 60
+        let seconds: Int = sec - minutes*60
+        
+        if hours == 0 {
+            return "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
+        } else {
+            return "\(String(format: "%02d", hours)):\(String(format: "%02d", minutes))"
+        }
     }
     
+    
+  
 
 }
 
