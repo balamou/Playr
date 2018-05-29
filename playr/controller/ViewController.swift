@@ -22,18 +22,18 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     //------------------------ Attributes ----------------------------------
     var movieView: UIView!
     var mediaPlayer = VLCMediaPlayer()
-    var url = "http://192.168.15.108/movies/rick_and_morty/season_1/S1E1.mp4"
     
     var _setPosition = true
     var updatePosition = true
     var toolBarShown = true
     
     
-    var stoppedAt = 0
-    var duration = 1
-    var viewedTitle = "Back"
+    //var url = "http://192.168.15.108/movies/rick_and_morty/season_1/S1E1.mp4"
+    //var stoppedAt = 0
+    //var duration = 1
+    //var viewedTitle = "Back"
     
-    var viewing: Viewed?
+    var viewing: Viewed!
     var net: NetworkModel!
     
     var timer = Timer()
@@ -76,11 +76,11 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     }
     
     // SET TITLE
-    func setTitle(viewed: Viewed)
+    func setTitle()
     {
         var tmpTitle = "Back"
         
-        if let ep = viewed as? Episode {
+        if let ep = viewing as? Episode {
             if let s = ep.mainSeries,
                 let t = s.title
             {
@@ -91,11 +91,11 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
                 tmpTitle = "S\(ep.season):E\(ep.episode) \"\(ep.title ?? "N/A")\"" // S1:E1 "Pilot"
             }
         }
-        else if let mov = viewed as? Movie {
+        else if let mov = viewing as? Movie {
             tmpTitle = mov.title ?? "Back"
         }
        
-        self.viewedTitle = tmpTitle
+        titleButton.setTitle(tmpTitle, for: .normal)
     }
     
     //----------------------------------------------------------------------
@@ -103,8 +103,9 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     //----------------------------------------------------------------------
     override func viewDidAppear(_ animated: Bool)
     {
-        guard let url = URL(string: self.url) else {
-            print("Something is wrong with URL: \(self.url)")
+        guard let url = URL(string: viewing.URL) else {
+            print("Something is wrong with URL: \(viewing.URL)")
+            // TODO: SHOW ALERT
             return
         }
         
@@ -112,7 +113,7 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         self.navigationController?.isNavigationBarHidden = true
         
         // setup title
-        titleButton.setTitle(viewedTitle, for: .normal)
+        setTitle()
         
         // setup gradient
         setupGradient()
@@ -131,8 +132,8 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         mediaPlayer.play()
         pausePlayBtn.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         
-        if stoppedAt != 0 {
-            mediaPlayer.position = Float(stoppedAt)/Float(duration)
+        if let stoppedAt = viewing.stoppedAt {
+            mediaPlayer.position = Float(stoppedAt)/Float(viewing.duration)
         }
         
          scheduledTimerWithTimeInterval()
@@ -171,13 +172,10 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     
     @objc func updateStop()
     {
-        print("Updating stop..")
-        if let viewing = viewing {
-            net.updateStoppedAt(viewed: viewing, stopAt: Int(mediaPlayer.position * Float(duration)) )
-            
-            let t = Int(mediaPlayer.position * Float(duration))
-            print("\(t)")
-        }
+        let time = Int(mediaPlayer.position * Float(viewing.duration))
+        
+        net.updateStoppedAt(viewed: viewing, stopAt: time)
+        print("Updating stopped at: \(time)")
     }
     //----------------------------------------------------------------------
     // GRADIENT
