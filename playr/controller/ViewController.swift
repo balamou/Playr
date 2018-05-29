@@ -120,6 +120,10 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         // setup gradient
         setupGradient()
         
+        // add drop shadow to big time letters
+        timeLabel.textDropShadow()
+        
+        // PLAYER
         let media = VLCMedia(url: url)
         mediaPlayer.media = media
         
@@ -138,7 +142,8 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
             mediaPlayer.position = Float(stoppedAt)/Float(viewing.duration)
         }
         
-         scheduledTimerWithTimeInterval()
+        // Start sending notifications to the server for updating time stopped at
+        scheduledTimerWithTimeInterval()
     }
     @objc func canRotate() -> Void {}
     
@@ -347,9 +352,6 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     //----------------------------------------------------------------------
     @IBAction func valueChanged(_ sender: UISlider)
     {
-        //let conv:VLCTime = VLCTime.init(int: Int32(sender.value))
-        //timeDisplay.text = conv.description
-        
         timeLabel.text = durationMin(seconds: Int(sender.value * Float(viewing.duration)))
     }
     
