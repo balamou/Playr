@@ -51,24 +51,7 @@ class SeriesController: UIViewController {
         seasonsLabel.text = "\(series.numSeasons) seasons"
         
         // SET TABLE HEIGHT & SCROLL CONTENT SIZE
-        var newHeight = 0
-        if let episodes = series.episodes[series.openSeason]
-        {
-            for ep in episodes
-            {
-                if let plot=ep.plot, plot == "" {
-                    newHeight+=90
-                }
-                else
-                {
-                    newHeight+=160
-                }
-            }
-        }
-        
-        //let newHeight = CGFloat(161 * (series.episodes[series.openSeason]?.count)!)
-        tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, CGFloat(newHeight))
-        scrollView.contentSize = CGSize(width: seriesInfView.frame.width, height: seriesInfView.frame.height + CGFloat(newHeight))
+        calculateTableSize()
         
         // Add blur background poster
         genBlurBackground()
@@ -91,6 +74,33 @@ class SeriesController: UIViewController {
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
+    
+    func calculateTableSize()
+    {
+        guard let series = self.show,
+        let episodes = series.episodes[series.openSeason]
+        else {
+            print("Show or episodes not set")
+            return
+        }
+        
+        var newHeight = 0
+    
+        for ep in episodes
+        {
+            if let plot=ep.plot, plot == "" {
+                newHeight+=90
+            }
+            else
+            {
+                newHeight+=160
+            }
+        }
+        
+        //let newHeight = CGFloat(161 * (series.episodes[series.openSeason]?.count)!)
+        tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, CGFloat(newHeight))
+        scrollView.contentSize = CGSize(width: seriesInfView.frame.width, height: seriesInfView.frame.height + CGFloat(newHeight))
+    }
     
     //----------------------------------------------------------------------
     // GENERATE BLUR BACKGROUND & GRADIENT
@@ -226,9 +236,7 @@ extension SeriesController
         sender.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 19) // make current button bold
         
         // UI: SET TABLE HEIGHT & SCROLL CONTENT SIZE
-        let newHeight = CGFloat(161 * (show.episodes[show.openSeason]?.count)!)
-        tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, newHeight)
-        scrollView.contentSize = CGSize(width: seriesInfView.frame.width, height: seriesInfView.frame.height + newHeight)
+        calculateTableSize()
         
         tableView.reloadData() // Reload episodes in table
     }
