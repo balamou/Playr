@@ -35,15 +35,28 @@ class MovieInfo: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        // HIDE NAV BAR
+        self.navigationController?.isNavigationBarHidden = true
+        
+        // SET STATUS BAR TO LIGHT
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    
     @IBAction func playMovie(_ sender: UIButton)
     {
         if let mov = movie
         {
             let videoPlayer = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
             
-            videoPlayer.url = mov.URL
-            videoPlayer.stoppedAt = mov.stoppedAt ?? 0
-            videoPlayer.duration = mov.duration
+//            videoPlayer.url = mov.URL
+//            videoPlayer.stoppedAt = mov.stoppedAt ?? 0
+//            videoPlayer.duration = mov.duration
+            
+            videoPlayer.viewing = mov
+            videoPlayer.net = net
             
             self.navigationController?.pushViewController(videoPlayer, animated: true)
         }
@@ -51,7 +64,10 @@ class MovieInfo: UIViewController {
     
     @IBAction func exit(_ sender: UIButton)
     {
-        // TODO: EXIT MOVIE INFO BUTTON
+        // show nav bar
+        self.navigationController?.isNavigationBarHidden = false
+        // close Controller
+        self.navigationController?.popViewController(animated: true)
     }
 
 }

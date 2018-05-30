@@ -55,13 +55,15 @@ class SeriesController: UIViewController {
         tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, newHeight)
         scrollView.contentSize = CGSize(width: seriesInfView.frame.width, height: seriesInfView.frame.height + newHeight)
         
-        tableView.reloadData()
-        
         // Add blur background poster
         genBlurBackground()
         
         // GENERATE seasons buttons
         genButtons(numOfBtn: series.numSeasons)
+        
+        // Reload episode table
+        tableView.reloadData()
+        //tableView.setNeedsDisplay()
     }
     
    
@@ -252,11 +254,6 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
     func openVideoPlayer(viewed: Viewed)
     {
         let videoPlayer = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        
-//        videoPlayer.url = viewed.URL
-//        videoPlayer.stoppedAt = viewed.stoppedAt ?? 0
-//        videoPlayer.duration = viewed.duration
-//        videoPlayer.setTitle(viewed: viewed)
         
         videoPlayer.viewing = viewed
         videoPlayer.net = net

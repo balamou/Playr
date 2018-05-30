@@ -61,7 +61,7 @@ class EpisodeCell: UITableViewCell {
     // Set view width
     func configureTime()
     {
-        if let stoppedAt = episode.stoppedAt  {
+        if let stoppedAt = episode.stoppedAt, episode.duration != 0 {
             let newWidth = self.durationView.frame.width * CGFloat(Float(stoppedAt)/Float(episode.duration))
             self.stoppedAtView.frame = CGRect(0, 0, newWidth, self.stoppedAtView.frame.height)
            

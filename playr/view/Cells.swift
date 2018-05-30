@@ -129,7 +129,7 @@ class ViewedCell: UICollectionViewCell {
     var film: Viewed!
     
     func setup(){
-        
+    
         self.configureTime(duration: film.duration, stoppedAt: film.stoppedAt ?? 1) // set the red bar below the viewed movie
         self.sub.text = film.label() // set Label
         
@@ -148,8 +148,14 @@ class ViewedCell: UICollectionViewCell {
     // Set view width
     func configureTime(duration: Int, stoppedAt: Int)
     {
-        let newWidth = self.duration.frame.width * CGFloat(Float(stoppedAt)/Float(duration))
-        self.stoppedAtView.frame = CGRect(0, 0, newWidth, self.stoppedAtView.frame.height)
+        if duration != 0 {
+            let newWidth = self.duration.frame.width * CGFloat(Float(stoppedAt)/Float(duration))
+            self.stoppedAtView.frame = CGRect(0, 0, newWidth, self.stoppedAtView.frame.height)
+        }
+        else
+        {
+            print("One of the viewed cells has duration 0")
+        }
     }
     
     // When clicking on play movie -> execute closure

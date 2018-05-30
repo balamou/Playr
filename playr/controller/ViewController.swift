@@ -155,6 +155,8 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
         mediaPlayer.removeObserver(self, forKeyPath: "time") // remove observer
         mediaPlayer.stop()
         
+        timer.invalidate() // stop timer
+        
         // RESET ORIENTATION
         if (self.isMovingFromParentViewController)
         {
