@@ -89,11 +89,6 @@ class MovieMenu: UIViewController{
     {
         let videoPlayer = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         
-//        videoPlayer.url = viewed.URL
-//        videoPlayer.stoppedAt = viewed.stoppedAt ?? 0
-//        videoPlayer.duration = viewed.duration
-//        videoPlayer.setTitle(viewed: viewed)
-        
         videoPlayer.viewing = viewed
         videoPlayer.net = net
         
