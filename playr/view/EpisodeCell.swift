@@ -34,6 +34,8 @@ class EpisodeCell: UITableViewCell {
     @IBOutlet weak var stoppedAtView: UIView!
     @IBOutlet weak var durationView: UIView!
     
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
+    
     var episode: Episode!
     var play: (Viewed) -> () = {_ in}
     
@@ -62,11 +64,14 @@ class EpisodeCell: UITableViewCell {
     func configureTime()
     {
         if let stoppedAt = episode.stoppedAt, episode.duration != 0 {
+            
             let newWidth = self.durationView.frame.width * CGFloat(Float(stoppedAt)/Float(episode.duration))
-            self.stoppedAtView.frame = CGRect(0, 0, newWidth, self.stoppedAtView.frame.height)
+            widthConstraint.constant = newWidth
+            self.stoppedAtView.layoutIfNeeded()
+            //self.stoppedAtView.frame = CGRect(0, 0, newWidth, self.stoppedAtView.frame.height)
            
             self.durationView.isHidden = false
-            self.stoppedAtView.setNeedsLayout()
+            //self.stoppedAtView.setNeedsLayout()
         }
         else{
             // hide duration time bar

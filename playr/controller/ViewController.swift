@@ -30,11 +30,6 @@ class ViewController: UIViewController, VLCMediaPlayerDelegate {
     var toolBarShown = true
     
     
-    //var url = "http://192.168.15.108/movies/rick_and_morty/season_1/S1E1.mp4"
-    //var stoppedAt = 0
-    //var duration = 1
-    //var viewedTitle = "Back"
-    
     var viewing: Viewed!
     var net: NetworkModel!
     

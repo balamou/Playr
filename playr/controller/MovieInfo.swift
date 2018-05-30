@@ -44,17 +44,29 @@ class MovieInfo: UIViewController {
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
+    // STOP ROTATION ANIMATION
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        coordinator.animate(alongsideTransition: nil) { (_) in
+            UIView.setAnimationsEnabled(true)
+        }
+        UIView.setAnimationsEnabled(false)
+        super.viewWillTransition(to: size, with: coordinator)
+    }
     
+}
+
+//----------------------------------------------------------------------
+// MARK: IBACTION
+//----------------------------------------------------------------------
+extension MovieInfo
+{
     @IBAction func playMovie(_ sender: UIButton)
     {
         if let mov = movie
         {
             let videoPlayer = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            
-//            videoPlayer.url = mov.URL
-//            videoPlayer.stoppedAt = mov.stoppedAt ?? 0
-//            videoPlayer.duration = mov.duration
-            
+ 
             videoPlayer.viewing = mov
             videoPlayer.net = net
             

@@ -51,9 +51,24 @@ class SeriesController: UIViewController {
         seasonsLabel.text = "\(series.numSeasons) seasons"
         
         // SET TABLE HEIGHT & SCROLL CONTENT SIZE
-        let newHeight = CGFloat(161 * (series.episodes[series.openSeason]?.count)!)
-        tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, newHeight)
-        scrollView.contentSize = CGSize(width: seriesInfView.frame.width, height: seriesInfView.frame.height + newHeight)
+        var newHeight = 0
+        if let episodes = series.episodes[series.openSeason]
+        {
+            for ep in episodes
+            {
+                if let plot=ep.plot, plot == "" {
+                    newHeight+=90
+                }
+                else
+                {
+                    newHeight+=160
+                }
+            }
+        }
+        
+        //let newHeight = CGFloat(161 * (series.episodes[series.openSeason]?.count)!)
+        tableView.frame = CGRect(tableView.frame.minX, tableView.frame.minY, tableView.frame.width, CGFloat(newHeight))
+        scrollView.contentSize = CGSize(width: seriesInfView.frame.width, height: seriesInfView.frame.height + CGFloat(newHeight))
         
         // Add blur background poster
         genBlurBackground()
@@ -63,7 +78,7 @@ class SeriesController: UIViewController {
         
         // Reload episode table
         tableView.reloadData()
-        //tableView.setNeedsDisplay()
+        tableView.setNeedsLayout()
     }
     
    
@@ -162,10 +177,15 @@ class SeriesController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
     }
     
-   
-    //----------------------------------------------------------------------
-    // MARK: IBACTION
-    //----------------------------------------------------------------------
+}
+
+
+//----------------------------------------------------------------------
+// MARK: IBACTION
+//----------------------------------------------------------------------
+extension SeriesController
+{
+
     @IBAction func exit(_ sender: UIButton)
     {
         // show nav bar
@@ -263,6 +283,14 @@ extension SeriesController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 161
+        if let show = show, let episodes = show.episodes[show.openSeason],
+            let plot = episodes[indexPath.row].plot, plot == ""
+        {
+            return 90
+        }
+        else
+        {
+            return 161
+        }
     }
 }

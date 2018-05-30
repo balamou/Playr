@@ -358,16 +358,18 @@
                                                                     <rect key="frame" x="0.0" y="70" width="129" height="2"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f51-Jl-O09">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="2"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="20" height="2"/>
                                                                             <color key="backgroundColor" red="0.82745098039215681" green="0.18431372549019609" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="20" id="6tL-rE-9ov"/>
+                                                                            </constraints>
                                                                         </view>
                                                                     </subviews>
                                                                     <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="trailing" secondItem="f51-Jl-O09" secondAttribute="trailing" constant="89" id="8Kz-w9-xkM"/>
-                                                                        <constraint firstItem="f51-Jl-O09" firstAttribute="top" secondItem="Y3g-Or-SHs" secondAttribute="top" id="Mia-Ea-9iM"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="f51-Jl-O09" secondAttribute="bottom" id="ktd-mq-PXL"/>
-                                                                        <constraint firstItem="f51-Jl-O09" firstAttribute="leading" secondItem="Y3g-Or-SHs" secondAttribute="leading" id="q1G-n6-8iR"/>
+                                                                        <constraint firstItem="f51-Jl-O09" firstAttribute="top" secondItem="Y3g-Or-SHs" secondAttribute="top" id="DGK-WG-Ruu"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="f51-Jl-O09" secondAttribute="bottom" id="JAO-IJ-Bzi"/>
+                                                                        <constraint firstItem="f51-Jl-O09" firstAttribute="leading" secondItem="Y3g-Or-SHs" secondAttribute="leading" id="Xki-4J-sTa"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYG-Gc-gpk" userLabel="Play">
@@ -425,6 +427,7 @@
                                                     <outlet property="stoppedAtView" destination="f51-Jl-O09" id="l7J-rA-2Ap"/>
                                                     <outlet property="thumbnailView" destination="RWs-qs-Q5Z" id="d8z-2E-yr6"/>
                                                     <outlet property="title" destination="cCS-xK-PtK" id="X1n-SJ-STD"/>
+                                                    <outlet property="widthConstraint" destination="6tL-rE-9ov" id="oyI-hf-p3Z"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
