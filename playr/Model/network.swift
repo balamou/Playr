@@ -296,6 +296,41 @@ public class RawNet
     }
     
     
+    
+    // RETURNS only a single integer
+    func getInt(urlPath: String, query: String, completion: @escaping (Int) -> () ) {
+        dataTask?.cancel()
+        guard var urlComponents = URLComponents(string: urlPath) else { return }
+        
+        urlComponents.query = query
+        guard let url = urlComponents.url else { return }
+    
+        dataTask = defaultSession.dataTask(with: url) { data, response, error in
+             if let data = data
+            {
+                var response: JSONDictionary?
+                
+                do {
+                    response = try JSONSerialization.jsonObject(with: data, options: []) as? JSONDictionary
+                } catch let parseError as NSError {
+                    print("JSONSerialization error: \(parseError.localizedDescription)\n")
+                    return
+                }
+                
+                
+                DispatchQueue.main.async {
+                    
+                    if let id = response!["id"] as? Int {
+                        completion(id)
+                    }
+                }
+            }
+        }
+        dataTask?.resume()
+    
+    }
+    
+    
 
     func quickQuery(_ urlPath: String, _ query: String, _ jsonParser: @escaping ([String: Any]) -> (Any), _ completion: @escaping (Any?) -> Void)
     {

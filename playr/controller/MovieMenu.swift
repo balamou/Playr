@@ -11,11 +11,12 @@ import Foundation
 
 class MovieMenu: UIViewController{
     
-    var categories = ["Viewed", "Movies", "Series"]
+    var categories = ["Viewed", "Series", "Movies"]
     
     var viewRow = 0
-    var movieRow = 1
-    var seriesRow = 2
+    var seriesRow = 1
+    var movieRow = 2
+   
     
     var net = NetworkModel()
     
@@ -36,13 +37,33 @@ class MovieMenu: UIViewController{
         self.categoryTable.tableHeaderView = UIView(frame: CGRect(0, 0, self.categoryTable.bounds.size.width, dummyViewHeight))
         self.categoryTable.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
         
+        // State.shared.cleanUp() // REMOVE
+        
+        if State.shared.isLogged()
+        {
+            loadData()
+        }
+        else
+        {
+            // sign in user
+            let signIn = self.storyboard?.instantiateViewController(withIdentifier: "SignIn") as! SignIn
+            
+            signIn.net = net
+            signIn.lastView = self
+            
+            self.navigationController?.pushViewController(signIn, animated: true)
+        }
+        
+    }
+    
+    func loadData()
+    {
         net.displayInfo = self.openSeriesInfo
         net.play = self.openVideoPlayer
         
         net.loadViewed(completion: self.reloadView)
         net.loadMovies(completion: self.reloadMovies)
         net.loadSeries(completion: self.reloadSeries)
-        
     }
     
     // MARK: On completion

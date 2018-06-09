@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9FA8BE2F0E4F21075192396B /* Pods_playr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CAC4B6EC1D09132A03E930D /* Pods_playr.framework */; };
 		ED19DC5620AFDC26004A4763 /* SeriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19DC5520AFDC26004A4763 /* SeriesController.swift */; };
+		ED3D753C20C7273400129762 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3D753B20C7273400129762 /* SignIn.swift */; };
 		ED45EBD220B86CC3002836D5 /* MovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED45EBD120B86CC3002836D5 /* MovieInfo.swift */; };
 		ED894F5B20B085EE00F2DBDE /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED894F5A20B085EE00F2DBDE /* model.swift */; };
 		ED894F5C20B34B3200F2DBDE /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED894F5D20B34B3200F2DBDE /* Kingfisher.framework */; };
@@ -34,6 +35,7 @@
 		8ED6EE678BC88493EBE57317 /* Pods-playr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-playr/Pods-playr.debug.xcconfig"; sourceTree = "<group>"; };
 		9FAB58886E918CFE54032516 /* Pods-playr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playr.release.xcconfig"; path = "Pods/Target Support Files/Pods-playr/Pods-playr.release.xcconfig"; sourceTree = "<group>"; };
 		ED19DC5520AFDC26004A4763 /* SeriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesController.swift; sourceTree = "<group>"; };
+		ED3D753B20C7273400129762 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		ED45EBD120B86CC3002836D5 /* MovieInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfo.swift; sourceTree = "<group>"; };
 		ED894F5A20B085EE00F2DBDE /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
 		ED894F5D20B34B3200F2DBDE /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				EDA46C6F20B3533E00B4868F /* MovieMenu.swift */,
+				ED3D753B20C7273400129762 /* SignIn.swift */,
 				ED45EBD120B86CC3002836D5 /* MovieInfo.swift */,
 				ED19DC5520AFDC26004A4763 /* SeriesController.swift */,
 				EDAF90F420A4C66F00E17275 /* MovieController.swift */,
@@ -287,6 +290,7 @@
 				ED19DC5620AFDC26004A4763 /* SeriesController.swift in Sources */,
 				ED894F5B20B085EE00F2DBDE /* model.swift in Sources */,
 				EDAF90F520A4C66F00E17275 /* MovieController.swift in Sources */,
+				ED3D753C20C7273400129762 /* SignIn.swift in Sources */,
 				EDA46C7620B61B0C00B4868F /* network.swift in Sources */,
 				EDA46C7020B3533E00B4868F /* MovieMenu.swift in Sources */,
 				EDA46C7420B61A6B00B4868F /* extensions.swift in Sources */,
