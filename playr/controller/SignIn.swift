@@ -19,7 +19,9 @@ class SignIn: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
+        // hide nav bar
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     //------------------------------------------------------------------------

@@ -38,6 +38,7 @@ class MovieMenu: UIViewController{
         self.categoryTable.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
         
         // State.shared.cleanUp() // REMOVE
+        // State.shared.user_id = 1 // REMOVE
         
         if State.shared.isLogged()
         {
