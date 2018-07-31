@@ -17,6 +17,7 @@
 		EDA46C7220B353CB00B4868F /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA46C7120B353CB00B4868F /* Cells.swift */; };
 		EDA46C7420B61A6B00B4868F /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA46C7320B61A6B00B4868F /* extensions.swift */; };
 		EDA46C7620B61B0C00B4868F /* network.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA46C7520B61B0C00B4868F /* network.swift */; };
+		EDA8D99421100C680016BAFA /* ParametersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA8D99321100C680016BAFA /* ParametersViewController.swift */; };
 		EDAF90DA20A414C200E17275 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90D920A414C200E17275 /* AppDelegate.swift */; };
 		EDAF90DC20A414C200E17275 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90DB20A414C200E17275 /* ViewController.swift */; };
 		EDAF90DF20A414C200E17275 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAF90DD20A414C200E17275 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		EDA46C7120B353CB00B4868F /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		EDA46C7320B61A6B00B4868F /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		EDA46C7520B61B0C00B4868F /* network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = network.swift; sourceTree = "<group>"; };
+		EDA8D99321100C680016BAFA /* ParametersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersViewController.swift; sourceTree = "<group>"; };
 		EDAF90D620A414C200E17275 /* playr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAF90D920A414C200E17275 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDAF90DB20A414C200E17275 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				ED45EBD120B86CC3002836D5 /* MovieInfo.swift */,
 				ED19DC5520AFDC26004A4763 /* SeriesController.swift */,
 				EDAF90DB20A414C200E17275 /* ViewController.swift */,
+				EDA8D99321100C680016BAFA /* ParametersViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				ED19DC5620AFDC26004A4763 /* SeriesController.swift in Sources */,
 				ED894F5B20B085EE00F2DBDE /* model.swift in Sources */,
 				ED3D753C20C7273400129762 /* SignIn.swift in Sources */,
+				EDA8D99421100C680016BAFA /* ParametersViewController.swift in Sources */,
 				EDA46C7620B61B0C00B4868F /* network.swift in Sources */,
 				EDA46C7020B3533E00B4868F /* MovieMenu.swift in Sources */,
 				EDA46C7420B61A6B00B4868F /* extensions.swift in Sources */,

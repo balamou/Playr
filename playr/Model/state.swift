@@ -33,6 +33,7 @@ class State: CustomStringConvertible
         return t
     }
  
+    var load: () -> () = {}
     
     
     static let shared = State()
