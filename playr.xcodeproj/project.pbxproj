@@ -25,7 +25,6 @@
 		EDAF90EC20A4150900E17275 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAF90EB20A4150900E17275 /* libstdc++.6.tbd */; };
 		EDAF90EF20A4153F00E17275 /* header.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90EE20A4153F00E17275 /* header.m */; };
 		EDAF90F120A47A9F00E17275 /* tmp.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90F020A47A9F00E17275 /* tmp.m */; };
-		EDAF90F520A4C66F00E17275 /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90F420A4C66F00E17275 /* MovieController.swift */; };
 		EDAF90FC20A4F8A300E17275 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90FB20A4F8A300E17275 /* EpisodeCell.swift */; };
 		EDAF910220AB5A0700E17275 /* state.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF910120AB5A0700E17275 /* state.swift */; };
 /* End PBXBuildFile section */
@@ -54,7 +53,6 @@
 		EDAF90ED20A4153F00E17275 /* playr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "playr-Bridging-Header.h"; sourceTree = "<group>"; };
 		EDAF90EE20A4153F00E17275 /* header.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = header.m; sourceTree = "<group>"; };
 		EDAF90F020A47A9F00E17275 /* tmp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tmp.m; sourceTree = "<group>"; };
-		EDAF90F420A4C66F00E17275 /* MovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
 		EDAF90FB20A4F8A300E17275 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		EDAF910120AB5A0700E17275 /* state.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = state.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,7 +141,6 @@
 				ED3D753B20C7273400129762 /* SignIn.swift */,
 				ED45EBD120B86CC3002836D5 /* MovieInfo.swift */,
 				ED19DC5520AFDC26004A4763 /* SeriesController.swift */,
-				EDAF90F420A4C66F00E17275 /* MovieController.swift */,
 				EDAF90DB20A414C200E17275 /* ViewController.swift */,
 			);
 			path = Controller;
@@ -289,7 +286,6 @@
 				EDA46C7220B353CB00B4868F /* Cells.swift in Sources */,
 				ED19DC5620AFDC26004A4763 /* SeriesController.swift in Sources */,
 				ED894F5B20B085EE00F2DBDE /* model.swift in Sources */,
-				EDAF90F520A4C66F00E17275 /* MovieController.swift in Sources */,
 				ED3D753C20C7273400129762 /* SignIn.swift in Sources */,
 				EDA46C7620B61B0C00B4868F /* network.swift in Sources */,
 				EDA46C7020B3533E00B4868F /* MovieMenu.swift in Sources */,
