@@ -22,7 +22,7 @@
   - Autolayout
 
   <p align="center">
-  <img src="images/screenshots/interface_builder.PNG" width="30%"/>
+  <img src="images/screenshots/interface_builder.png" width="30%"/>
   </p>
 
 ## Languages

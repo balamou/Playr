@@ -40,6 +40,8 @@ class MovieMenu: UIViewController{
         // State.shared.cleanUp() // REMOVE
         // State.shared.user_id = 1 // REMOVE
         
+        State.shared.load = self.loadData
+        
         if State.shared.isLogged()
         {
             loadData()
@@ -59,6 +61,11 @@ class MovieMenu: UIViewController{
     
     func loadData()
     {
+        // Reset
+        net.movies = []
+        net.series = []
+        // -----
+        
         net.displayInfo = self.openSeriesInfo
         net.play = self.openVideoPlayer
         

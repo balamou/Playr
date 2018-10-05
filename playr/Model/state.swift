@@ -39,7 +39,8 @@ class State: CustomStringConvertible
     static let shared = State()
     
     //var address = "http://192.168.15.108/"
-    var address = "http://192.168.0.121/"
+    //var address = "http://192.168.0.121/"
+    var address = "http://192.168.72.46/"
     var language = "EN"
     var user_id = 1
     
