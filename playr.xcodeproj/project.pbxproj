@@ -11,9 +11,7 @@
 		ED19DC5620AFDC26004A4763 /* SeriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19DC5520AFDC26004A4763 /* SeriesController.swift */; };
 		ED3D753C20C7273400129762 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3D753B20C7273400129762 /* SignIn.swift */; };
 		ED45EBD220B86CC3002836D5 /* MovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED45EBD120B86CC3002836D5 /* MovieInfo.swift */; };
-		ED799D1A213E1A0F00B14185 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED799D19213E1A0F00B14185 /* SwiftyJSON.framework */; };
-		ED799D1C213E265E00B14185 /* LoadViewed.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED799D1B213E265E00B14185 /* LoadViewed.swift */; };
-		ED799D1E213E2C3100B14185 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED799D1D213E2C3100B14185 /* UserRequests.swift */; };
+		ED7EBF33216D61C7002C113D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED7EBF32216D61C7002C113D /* Assets.xcassets */; };
 		ED894F5B20B085EE00F2DBDE /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED894F5A20B085EE00F2DBDE /* model.swift */; };
 		ED894F5C20B34B3200F2DBDE /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED894F5D20B34B3200F2DBDE /* Kingfisher.framework */; };
 		EDA46C7020B3533E00B4868F /* MovieMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA46C6F20B3533E00B4868F /* MovieMenu.swift */; };
@@ -24,19 +22,11 @@
 		EDAF90DA20A414C200E17275 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90D920A414C200E17275 /* AppDelegate.swift */; };
 		EDAF90DC20A414C200E17275 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90DB20A414C200E17275 /* ViewController.swift */; };
 		EDAF90DF20A414C200E17275 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAF90DD20A414C200E17275 /* Main.storyboard */; };
-		EDAF90E120A414C200E17275 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDAF90E020A414C200E17275 /* Assets.xcassets */; };
 		EDAF90E420A414C200E17275 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAF90E220A414C200E17275 /* LaunchScreen.storyboard */; };
-		EDAF90EC20A4150900E17275 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAF90EB20A4150900E17275 /* libstdc++.6.tbd */; };
 		EDAF90EF20A4153F00E17275 /* header.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90EE20A4153F00E17275 /* header.m */; };
 		EDAF90F120A47A9F00E17275 /* tmp.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90F020A47A9F00E17275 /* tmp.m */; };
 		EDAF90FC20A4F8A300E17275 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF90FB20A4F8A300E17275 /* EpisodeCell.swift */; };
 		EDAF910220AB5A0700E17275 /* state.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF910120AB5A0700E17275 /* state.swift */; };
-		EDF8CDC52135A77100992D4E /* request.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8CDC42135A77100992D4E /* request.swift */; };
-		EDF8CDC72135AC9500992D4E /* dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8CDC62135AC9500992D4E /* dispatcher.swift */; };
-		EDF8CDC92135AE0A00992D4E /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8CDC82135AE0A00992D4E /* NetworkDispatcher.swift */; };
-		EDF8CDCB2135AF6200992D4E /* response.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8CDCA2135AF6200992D4E /* response.swift */; };
-		EDF8CDCD2135AF8700992D4E /* operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8CDCC2135AF8700992D4E /* operation.swift */; };
-		EDFF17C82135BAB90043CC57 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFF17C72135BAB90043CC57 /* PromiseKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +37,7 @@
 		ED3D753B20C7273400129762 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		ED45EBD120B86CC3002836D5 /* MovieInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfo.swift; sourceTree = "<group>"; };
 		ED799D19213E1A0F00B14185 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED799D1B213E265E00B14185 /* LoadViewed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewed.swift; sourceTree = "<group>"; };
-		ED799D1D213E2C3100B14185 /* UserRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequests.swift; sourceTree = "<group>"; };
+		ED7EBF32216D61C7002C113D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "playr/supporting files/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		ED894F5A20B085EE00F2DBDE /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
 		ED894F5D20B34B3200F2DBDE /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDA46C6F20B3533E00B4868F /* MovieMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMenu.swift; sourceTree = "<group>"; };
@@ -60,7 +49,6 @@
 		EDAF90D920A414C200E17275 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDAF90DB20A414C200E17275 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EDAF90DE20A414C200E17275 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EDAF90E020A414C200E17275 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDAF90E320A414C200E17275 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDAF90E520A414C200E17275 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDAF90EB20A4150900E17275 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
@@ -69,11 +57,6 @@
 		EDAF90F020A47A9F00E17275 /* tmp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tmp.m; sourceTree = "<group>"; };
 		EDAF90FB20A4F8A300E17275 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		EDAF910120AB5A0700E17275 /* state.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = state.swift; sourceTree = "<group>"; };
-		EDF8CDC42135A77100992D4E /* request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = request.swift; sourceTree = "<group>"; };
-		EDF8CDC62135AC9500992D4E /* dispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dispatcher.swift; sourceTree = "<group>"; };
-		EDF8CDC82135AE0A00992D4E /* NetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
-		EDF8CDCA2135AF6200992D4E /* response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = response.swift; sourceTree = "<group>"; };
-		EDF8CDCC2135AF8700992D4E /* operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = operation.swift; sourceTree = "<group>"; };
 		EDFF17C72135BAB90043CC57 /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -82,10 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED799D1A213E1A0F00B14185 /* SwiftyJSON.framework in Frameworks */,
-				EDFF17C82135BAB90043CC57 /* PromiseKit.framework in Frameworks */,
 				ED894F5C20B34B3200F2DBDE /* Kingfisher.framework in Frameworks */,
-				EDAF90EC20A4150900E17275 /* libstdc++.6.tbd in Frameworks */,
 				9FA8BE2F0E4F21075192396B /* Pods_playr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,10 +130,10 @@
 		EDAF90F620A4EDF000E17275 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				ED7EBF32216D61C7002C113D /* Assets.xcassets */,
 				EDAF90DD20A414C200E17275 /* Main.storyboard */,
 				EDAF90E220A414C200E17275 /* LaunchScreen.storyboard */,
 				EDAF90D920A414C200E17275 /* AppDelegate.swift */,
-				EDAF90E020A414C200E17275 /* Assets.xcassets */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -187,23 +167,8 @@
 				EDAF910120AB5A0700E17275 /* state.swift */,
 				EDA46C7320B61A6B00B4868F /* extensions.swift */,
 				EDA46C7520B61B0C00B4868F /* network.swift */,
-				EDF8CDC32135A74500992D4E /* network */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		EDF8CDC32135A74500992D4E /* network */ = {
-			isa = PBXGroup;
-			children = (
-				EDF8CDC42135A77100992D4E /* request.swift */,
-				EDF8CDC62135AC9500992D4E /* dispatcher.swift */,
-				EDF8CDCA2135AF6200992D4E /* response.swift */,
-				EDF8CDCC2135AF8700992D4E /* operation.swift */,
-				ED799D1D213E2C3100B14185 /* UserRequests.swift */,
-				EDF8CDC82135AE0A00992D4E /* NetworkDispatcher.swift */,
-				ED799D1B213E265E00B14185 /* LoadViewed.swift */,
-			);
-			path = network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +200,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Michel Balamou";
 				TargetAttributes = {
 					EDAF90D520A414C200E17275 = {
@@ -269,7 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDAF90E420A414C200E17275 /* LaunchScreen.storyboard in Resources */,
-				EDAF90E120A414C200E17275 /* Assets.xcassets in Resources */,
+				ED7EBF33216D61C7002C113D /* Assets.xcassets in Resources */,
 				EDAF90DF20A414C200E17275 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,14 +268,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-playr/Pods-playr-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -325,27 +286,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED45EBD220B86CC3002836D5 /* MovieInfo.swift in Sources */,
-				EDF8CDC52135A77100992D4E /* request.swift in Sources */,
 				EDAF90FC20A4F8A300E17275 /* EpisodeCell.swift in Sources */,
 				EDAF90EF20A4153F00E17275 /* header.m in Sources */,
-				EDF8CDCB2135AF6200992D4E /* response.swift in Sources */,
 				EDA46C7220B353CB00B4868F /* Cells.swift in Sources */,
-				EDF8CDC72135AC9500992D4E /* dispatcher.swift in Sources */,
-				EDF8CDCD2135AF8700992D4E /* operation.swift in Sources */,
 				ED19DC5620AFDC26004A4763 /* SeriesController.swift in Sources */,
 				ED894F5B20B085EE00F2DBDE /* model.swift in Sources */,
 				ED3D753C20C7273400129762 /* SignIn.swift in Sources */,
 				EDA8D99421100C680016BAFA /* ParametersViewController.swift in Sources */,
-				ED799D1E213E2C3100B14185 /* UserRequests.swift in Sources */,
 				EDA46C7620B61B0C00B4868F /* network.swift in Sources */,
 				EDA46C7020B3533E00B4868F /* MovieMenu.swift in Sources */,
 				EDA46C7420B61A6B00B4868F /* extensions.swift in Sources */,
 				EDAF90F120A47A9F00E17275 /* tmp.m in Sources */,
-				ED799D1C213E265E00B14185 /* LoadViewed.swift in Sources */,
 				EDAF90DC20A414C200E17275 /* ViewController.swift in Sources */,
 				EDAF910220AB5A0700E17275 /* state.swift in Sources */,
 				EDAF90DA20A414C200E17275 /* AppDelegate.swift in Sources */,
-				EDF8CDC92135AE0A00992D4E /* NetworkDispatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +339,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -392,6 +347,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -442,6 +398,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -449,6 +406,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
