@@ -1,7 +1,7 @@
 # <img src="images/screenshots/logo.png" width="30px" height="30px"/> PLAYR
 
   An app that lets you and your family view videos/movies from your local server (tested on iPhone 8).
-  For more information: <a href="http://www.balamou.com/playr">balamou.com/playr</a>
+  For more information <a href="http://www.balamou.com/playr">balamou.com/playr</a>
 
   <p align="center">
   <img src="images/screenshots/playr.gif" width="30%"/>
